@@ -1,0 +1,38 @@
+{
+    "generator-jhipster": {
+        "promptValues": {
+            "packageName": "com.litelife.learnportal",
+            "nativeLanguage": "ru"
+        },
+        "jhipsterVersion": "5.8.2",
+        "applicationType": "monolith",
+        "baseName": "learnportal",
+        "packageName": "com.litelife.learnportal",
+        "packageFolder": "com/litelife/learnportal",
+        "serverPort": "8080",
+        "authenticationType": "jwt",
+        "cacheProvider": "ehcache",
+        "enableHibernateCache": true,
+        "websocket": false,
+        "databaseType": "sql",
+        "devDatabaseType": "mysql",
+        "prodDatabaseType": "mysql",
+        "searchEngine": false,
+        "messageBroker": false,
+        "serviceDiscoveryType": false,
+        "buildTool": "maven",
+        "enableSwaggerCodegen": false,
+        "jwtSecretKey": "MTYzYjYzOTVjYmZiNWY2Yzk3MWFjZmZkYTc4MzUzMjY3MjUxZjZhMTRhYWIyNjkzNGE5ODI1ZGQwZjU2ODQ2ZTcyMDQ5OTdjMGU0NDExZjNhYTc2NjZlOTk5Yzk5M2UyOTI5M2VmYTZkMDgyNWI3MjZmODAwNmFiNjVkZjhmNTY=",
+        "clientFramework": "angularX",
+        "useSass": true,
+        "clientPackageManager": "npm",
+        "testFrameworks": ["protractor"],
+        "jhiPrefix": "jhi",
+        "entitySuffix": "",
+        "dtoSuffix": "DTO",
+        "otherModules": [],
+        "enableTranslation": true,
+        "nativeLanguage": "ru",
+        "languages": ["ru", "en"]
+    }
+}
