@@ -1,0 +1,37 @@
+{
+    "name": "QuestionAnswer",
+    "fields": [
+        {
+            "fieldName": "text",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "correct",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "quizQuestion",
+            "otherEntityRelationshipName": "answers",
+            "relationshipName": "question",
+            "otherEntityField": "text"
+        }
+    ],
+    "changelogDate": "20190330124500",
+    "entityTableName": "question_answer",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,41 @@
+{
+    "name": "QuizQuestion",
+    "fields": [
+        {
+            "fieldName": "text",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "questionAnswer",
+            "otherEntityRelationshipName": "question",
+            "relationshipName": "answers"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "quiz",
+            "otherEntityRelationshipName": "questions",
+            "relationshipName": "quiz",
+            "otherEntityField": "title"
+        }
+    ],
+    "changelogDate": "20190330124459",
+    "entityTableName": "quiz_question",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

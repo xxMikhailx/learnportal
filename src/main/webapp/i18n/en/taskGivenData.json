@@ -1,0 +1,22 @@
+{
+    "learnportalApp": {
+        "taskGivenData": {
+            "home": {
+                "title": "Task Given Data",
+                "createLabel": "Create a new Task Given Data",
+                "createOrEditLabel": "Create or edit a Task Given Data"
+            },
+            "created": "A new Task Given Data is created with identifier {{ param }}",
+            "updated": "A Task Given Data is updated with identifier {{ param }}",
+            "deleted": "A Task Given Data is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Task Given Data {{ id }}?"
+            },
+            "detail": {
+                "title": "Task Given Data"
+            },
+            "content": "Content",
+            "task": "Task"
+        }
+    }
+}

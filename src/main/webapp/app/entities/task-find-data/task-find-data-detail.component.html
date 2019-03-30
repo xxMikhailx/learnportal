@@ -1,0 +1,33 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="taskFindData">
+            <h2><span jhiTranslate="learnportalApp.taskFindData.detail.title">Task Find Data</span> {{taskFindData.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="learnportalApp.taskFindData.content">Content</span></dt>
+                <dd>
+                    <span>{{taskFindData.content}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.taskFindData.task">Task</span></dt>
+                <dd>
+                    <div *ngIf="taskFindData.task">
+                        <a [routerLink]="['/task', taskFindData.task?.id, 'view']">{{taskFindData.task?.title}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/task-find-data', taskFindData.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

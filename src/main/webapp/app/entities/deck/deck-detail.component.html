@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="deck">
+            <h2><span jhiTranslate="learnportalApp.deck.detail.title">Deck</span> {{deck.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="learnportalApp.deck.title">Title</span></dt>
+                <dd>
+                    <span>{{deck.title}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.deck.description">Description</span></dt>
+                <dd>
+                    <span>{{deck.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.deck.deck">Deck</span></dt>
+                <dd>
+                    <div *ngIf="deck.deck">
+                        <a (click)="openFile(deck.deckContentType, deck.deck)" jhiTranslate="entity.action.open">open</a>
+                        {{deck.deckContentType}}, {{byteSize(deck.deck)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.deck.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="deck.category">
+                        <a [routerLink]="['/category', deck.category?.id, 'view']">{{deck.category?.fullName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/deck', deck.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

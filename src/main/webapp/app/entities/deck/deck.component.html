@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="learnportalApp.deck.home.title">Decks</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-deck" [routerLink]="['/deck/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="learnportalApp.deck.home.createLabel">
+            Create new Deck
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="decks">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="title"><span jhiTranslate="learnportalApp.deck.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="description"><span jhiTranslate="learnportalApp.deck.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="deck"><span jhiTranslate="learnportalApp.deck.deck">Deck</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="category.fullName"><span jhiTranslate="learnportalApp.deck.category">Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let deck of decks ;trackBy: trackId">
+                <td><a [routerLink]="['/deck', deck.id, 'view' ]">{{deck.id}}</a></td>
+                <td>{{deck.title}}</td>
+                <td>{{deck.description}}</td>
+                <td>
+                    <a *ngIf="deck.deck" (click)="openFile(deck.deckContentType, deck.deck)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="deck.deck">{{deck.deckContentType}}, {{byteSize(deck.deck)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="deck.category">
+                        <a [routerLink]="['../category', deck.category?.id, 'view' ]" >{{deck.category?.fullName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/deck', deck.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/deck', deck.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'deck', { outlets: { popup: deck.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

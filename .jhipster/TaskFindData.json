@@ -1,0 +1,30 @@
+{
+    "name": "TaskFindData",
+    "fields": [
+        {
+            "fieldName": "content",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "task",
+            "otherEntityRelationshipName": "findData",
+            "relationshipName": "task",
+            "otherEntityField": "title"
+        }
+    ],
+    "changelogDate": "20190330124457",
+    "entityTableName": "task_find_data",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

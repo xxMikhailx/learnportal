@@ -1,0 +1,57 @@
+{
+    "name": "Category",
+    "fields": [
+        {
+            "fieldName": "shortName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fullName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "theory",
+            "otherEntityRelationshipName": "category",
+            "relationshipName": "theories"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "formula",
+            "otherEntityRelationshipName": "category",
+            "relationshipName": "formulas"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "deck",
+            "otherEntityRelationshipName": "category",
+            "relationshipName": "decks"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "task",
+            "otherEntityRelationshipName": "category",
+            "relationshipName": "tasks"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "quiz",
+            "otherEntityRelationshipName": "category",
+            "relationshipName": "quizzes"
+        }
+    ],
+    "changelogDate": "20190330124451",
+    "entityTableName": "category",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
