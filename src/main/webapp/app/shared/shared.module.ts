@@ -1,21 +1,22 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { NgbDateAdapter } from '@ng-bootstrap/ng-bootstrap';
-
-import { NgbDateMomentAdapter } from './util/datepicker-adapter';
-import { LearnportalSharedLibsModule, LearnportalSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective } from './';
+import { NgModule } from '@angular/core';
+import { LearnportalSharedLibsModule } from './shared-libs.module';
+import { FindLanguageFromKeyPipe } from './language/find-language-from-key.pipe';
+import { JhiAlertComponent } from './alert/alert.component';
+import { JhiAlertErrorComponent } from './alert/alert-error.component';
+import { JhiLoginModalComponent } from './login/login.component';
+import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 
 @NgModule({
-    imports: [LearnportalSharedLibsModule, LearnportalSharedCommonModule],
-    declarations: [JhiLoginModalComponent, HasAnyAuthorityDirective],
-    providers: [{ provide: NgbDateAdapter, useClass: NgbDateMomentAdapter }],
-    entryComponents: [JhiLoginModalComponent],
-    exports: [LearnportalSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [LearnportalSharedLibsModule],
+  declarations: [FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent, JhiLoginModalComponent, HasAnyAuthorityDirective],
+  entryComponents: [JhiLoginModalComponent],
+  exports: [
+    LearnportalSharedLibsModule,
+    FindLanguageFromKeyPipe,
+    JhiAlertComponent,
+    JhiAlertErrorComponent,
+    JhiLoginModalComponent,
+    HasAnyAuthorityDirective
+  ]
 })
-export class LearnportalSharedModule {
-    static forRoot() {
-        return {
-            ngModule: LearnportalSharedModule
-        };
-    }
-}
+export class LearnportalSharedModule {}

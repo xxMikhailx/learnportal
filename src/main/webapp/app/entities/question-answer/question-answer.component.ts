@@ -1,65 +1,66 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { IQuestionAnswer } from 'app/shared/model/question-answer.model';
-import { AccountService } from 'app/core';
+import { AccountService } from 'app/core/auth/account.service';
 import { QuestionAnswerService } from './question-answer.service';
 
 @Component({
-    selector: 'jhi-question-answer',
-    templateUrl: './question-answer.component.html'
+  selector: 'jhi-question-answer',
+  templateUrl: './question-answer.component.html'
 })
 export class QuestionAnswerComponent implements OnInit, OnDestroy {
-    questionAnswers: IQuestionAnswer[];
-    currentAccount: any;
-    eventSubscriber: Subscription;
+  questionAnswers: IQuestionAnswer[];
+  currentAccount: any;
+  eventSubscriber: Subscription;
 
-    constructor(
-        protected questionAnswerService: QuestionAnswerService,
-        protected jhiAlertService: JhiAlertService,
-        protected eventManager: JhiEventManager,
-        protected accountService: AccountService
-    ) {}
+  constructor(
+    protected questionAnswerService: QuestionAnswerService,
+    protected jhiAlertService: JhiAlertService,
+    protected eventManager: JhiEventManager,
+    protected accountService: AccountService
+  ) {}
 
-    loadAll() {
-        this.questionAnswerService
-            .query()
-            .pipe(
-                filter((res: HttpResponse<IQuestionAnswer[]>) => res.ok),
-                map((res: HttpResponse<IQuestionAnswer[]>) => res.body)
-            )
-            .subscribe(
-                (res: IQuestionAnswer[]) => {
-                    this.questionAnswers = res;
-                },
-                (res: HttpErrorResponse) => this.onError(res.message)
-            );
-    }
+  loadAll() {
+    this.questionAnswerService
+      .query()
+      .pipe(
+        filter((res: HttpResponse<IQuestionAnswer[]>) => res.ok),
+        map((res: HttpResponse<IQuestionAnswer[]>) => res.body)
+      )
+      .subscribe(
+        (res: IQuestionAnswer[]) => {
+          this.questionAnswers = res;
+        },
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+  }
 
-    ngOnInit() {
-        this.loadAll();
-        this.accountService.identity().then(account => {
-            this.currentAccount = account;
-        });
-        this.registerChangeInQuestionAnswers();
-    }
+  ngOnInit() {
+    this.loadAll();
+    this.accountService.identity().then(account => {
+      this.currentAccount = account;
+    });
+    this.registerChangeInQuestionAnswers();
+  }
 
-    ngOnDestroy() {
-        this.eventManager.destroy(this.eventSubscriber);
-    }
+  ngOnDestroy() {
+    this.eventManager.destroy(this.eventSubscriber);
+  }
 
-    trackId(index: number, item: IQuestionAnswer) {
-        return item.id;
-    }
+  trackId(index: number, item: IQuestionAnswer) {
+    return item.id;
+  }
 
-    registerChangeInQuestionAnswers() {
-        this.eventSubscriber = this.eventManager.subscribe('questionAnswerListModification', response => this.loadAll());
-    }
+  registerChangeInQuestionAnswers() {
+    this.eventSubscriber = this.eventManager.subscribe('questionAnswerListModification', response => this.loadAll());
+  }
 
-    protected onError(errorMessage: string) {
-        this.jhiAlertService.error(errorMessage, null, null);
-    }
+  protected onError(errorMessage: string) {
+    this.jhiAlertService.error(errorMessage, null, null);
+  }
 }

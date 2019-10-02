@@ -1,24 +1,25 @@
 {
-    "learnportalApp": {
-        "formula": {
-            "home": {
-                "title": "Formulas",
-                "createLabel": "Создать новый Formula",
-                "createOrEditLabel": "Создать или отредактировать Formula"
-            },
-            "created": "Новый Formula создан с идентификатором {{ param }}",
-            "updated": "Formula обновлен с идентификатором {{ param }}",
-            "deleted": "Formula удален с идентификатором {{ param }}",
-            "delete": {
-                "question": "Вы уверены что хотите удалить Formula {{ id }}?"
-            },
-            "detail": {
-                "title": "Formula"
-            },
-            "title": "Title",
-            "description": "Description",
-            "equation": "Equation",
-            "category": "Category"
-        }
+  "learnportalApp": {
+    "formula": {
+      "home": {
+        "title": "Formulas",
+        "createLabel": "Создать новый Formula",
+        "createOrEditLabel": "Создать или отредактировать Formula",
+        "notFound": "No Formulas found"
+      },
+      "created": "Новый Formula создан с идентификатором {{ param }}",
+      "updated": "Formula обновлен с идентификатором {{ param }}",
+      "deleted": "Formula удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Formula {{ id }}?"
+      },
+      "detail": {
+        "title": "Formula"
+      },
+      "title": "Title",
+      "description": "Description",
+      "equation": "Equation",
+      "category": "Category"
     }
+  }
 }

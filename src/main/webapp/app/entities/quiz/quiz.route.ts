@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { UserRouteAccessService } from 'app/core';
+import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { Quiz } from 'app/shared/model/quiz.model';
@@ -14,80 +14,80 @@ import { IQuiz } from 'app/shared/model/quiz.model';
 
 @Injectable({ providedIn: 'root' })
 export class QuizResolve implements Resolve<IQuiz> {
-    constructor(private service: QuizService) {}
+  constructor(private service: QuizService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IQuiz> {
-        const id = route.params['id'] ? route.params['id'] : null;
-        if (id) {
-            return this.service.find(id).pipe(
-                filter((response: HttpResponse<Quiz>) => response.ok),
-                map((quiz: HttpResponse<Quiz>) => quiz.body)
-            );
-        }
-        return of(new Quiz());
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IQuiz> {
+    const id = route.params['id'];
+    if (id) {
+      return this.service.find(id).pipe(
+        filter((response: HttpResponse<Quiz>) => response.ok),
+        map((quiz: HttpResponse<Quiz>) => quiz.body)
+      );
     }
+    return of(new Quiz());
+  }
 }
 
 export const quizRoute: Routes = [
-    {
-        path: '',
-        component: QuizComponent,
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'learnportalApp.quiz.home.title'
-        },
-        canActivate: [UserRouteAccessService]
+  {
+    path: '',
+    component: QuizComponent,
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.quiz.home.title'
     },
-    {
-        path: ':id/view',
-        component: QuizDetailComponent,
-        resolve: {
-            quiz: QuizResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'learnportalApp.quiz.home.title'
-        },
-        canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: ':id/view',
+    component: QuizDetailComponent,
+    resolve: {
+      quiz: QuizResolve
     },
-    {
-        path: 'new',
-        component: QuizUpdateComponent,
-        resolve: {
-            quiz: QuizResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'learnportalApp.quiz.home.title'
-        },
-        canActivate: [UserRouteAccessService]
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.quiz.home.title'
     },
-    {
-        path: ':id/edit',
-        component: QuizUpdateComponent,
-        resolve: {
-            quiz: QuizResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'learnportalApp.quiz.home.title'
-        },
-        canActivate: [UserRouteAccessService]
-    }
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: 'new',
+    component: QuizUpdateComponent,
+    resolve: {
+      quiz: QuizResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.quiz.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: ':id/edit',
+    component: QuizUpdateComponent,
+    resolve: {
+      quiz: QuizResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.quiz.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  }
 ];
 
 export const quizPopupRoute: Routes = [
-    {
-        path: ':id/delete',
-        component: QuizDeletePopupComponent,
-        resolve: {
-            quiz: QuizResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'learnportalApp.quiz.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+  {
+    path: ':id/delete',
+    component: QuizDeletePopupComponent,
+    resolve: {
+      quiz: QuizResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.quiz.home.title'
+    },
+    canActivate: [UserRouteAccessService],
+    outlet: 'popup'
+  }
 ];

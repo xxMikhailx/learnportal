@@ -1,22 +1,23 @@
 {
-    "learnportalApp": {
-        "taskFindData": {
-            "home": {
-                "title": "Task Find Data",
-                "createLabel": "Создать новый Task Find Data",
-                "createOrEditLabel": "Создать или отредактировать Task Find Data"
-            },
-            "created": "Новый Task Find Data создан с идентификатором {{ param }}",
-            "updated": "Task Find Data обновлен с идентификатором {{ param }}",
-            "deleted": "Task Find Data удален с идентификатором {{ param }}",
-            "delete": {
-                "question": "Вы уверены что хотите удалить Task Find Data {{ id }}?"
-            },
-            "detail": {
-                "title": "Task Find Data"
-            },
-            "content": "Content",
-            "task": "Task"
-        }
+  "learnportalApp": {
+    "taskFindData": {
+      "home": {
+        "title": "Task Find Data",
+        "createLabel": "Создать новый Task Find Data",
+        "createOrEditLabel": "Создать или отредактировать Task Find Data",
+        "notFound": "No Task Find Data found"
+      },
+      "created": "Новый Task Find Data создан с идентификатором {{ param }}",
+      "updated": "Task Find Data обновлен с идентификатором {{ param }}",
+      "deleted": "Task Find Data удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Task Find Data {{ id }}?"
+      },
+      "detail": {
+        "title": "Task Find Data"
+      },
+      "content": "Content",
+      "task": "Task"
     }
+  }
 }

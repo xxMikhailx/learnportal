@@ -1,7 +1,4 @@
 package com.litelife.learnportal.domain;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -12,7 +9,6 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Objects;
 
 /**
  * A Quiz.
@@ -23,7 +19,7 @@ import java.util.Objects;
 public class Quiz implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,6 +34,7 @@ public class Quiz implements Serializable {
     @OneToMany(mappedBy = "quiz")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<QuizQuestion> questions = new HashSet<>();
+
     @ManyToOne
     @JsonIgnoreProperties("quizzes")
     private Category category;
@@ -121,19 +118,15 @@ public class Quiz implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Quiz)) {
             return false;
         }
-        Quiz quiz = (Quiz) o;
-        if (quiz.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), quiz.getId());
+        return id != null && id.equals(((Quiz) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

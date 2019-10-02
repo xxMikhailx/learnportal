@@ -1,22 +1,23 @@
 {
-    "learnportalApp": {
-        "taskGivenData": {
-            "home": {
-                "title": "Task Given Data",
-                "createLabel": "Создать новый Task Given Data",
-                "createOrEditLabel": "Создать или отредактировать Task Given Data"
-            },
-            "created": "Новый Task Given Data создан с идентификатором {{ param }}",
-            "updated": "Task Given Data обновлен с идентификатором {{ param }}",
-            "deleted": "Task Given Data удален с идентификатором {{ param }}",
-            "delete": {
-                "question": "Вы уверены что хотите удалить Task Given Data {{ id }}?"
-            },
-            "detail": {
-                "title": "Task Given Data"
-            },
-            "content": "Content",
-            "task": "Task"
-        }
+  "learnportalApp": {
+    "taskGivenData": {
+      "home": {
+        "title": "Task Given Data",
+        "createLabel": "Создать новый Task Given Data",
+        "createOrEditLabel": "Создать или отредактировать Task Given Data",
+        "notFound": "No Task Given Data found"
+      },
+      "created": "Новый Task Given Data создан с идентификатором {{ param }}",
+      "updated": "Task Given Data обновлен с идентификатором {{ param }}",
+      "deleted": "Task Given Data удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Task Given Data {{ id }}?"
+      },
+      "detail": {
+        "title": "Task Given Data"
+      },
+      "content": "Content",
+      "task": "Task"
     }
+  }
 }

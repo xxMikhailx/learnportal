@@ -1,27 +1,28 @@
 {
-    "learnportalApp": {
-        "category": {
-            "home": {
-                "title": "Categories",
-                "createLabel": "Создать новый Category",
-                "createOrEditLabel": "Создать или отредактировать Category"
-            },
-            "created": "Новый Category создан с идентификатором {{ param }}",
-            "updated": "Category обновлен с идентификатором {{ param }}",
-            "deleted": "Category удален с идентификатором {{ param }}",
-            "delete": {
-                "question": "Вы уверены что хотите удалить Category {{ id }}?"
-            },
-            "detail": {
-                "title": "Category"
-            },
-            "shortName": "Short Name",
-            "fullName": "Full Name",
-            "theories": "Theories",
-            "formulas": "Formulas",
-            "decks": "Decks",
-            "tasks": "Tasks",
-            "quizzes": "Quizzes"
-        }
+  "learnportalApp": {
+    "category": {
+      "home": {
+        "title": "Categories",
+        "createLabel": "Создать новый Category",
+        "createOrEditLabel": "Создать или отредактировать Category",
+        "notFound": "No Categories found"
+      },
+      "created": "Новый Category создан с идентификатором {{ param }}",
+      "updated": "Category обновлен с идентификатором {{ param }}",
+      "deleted": "Category удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Category {{ id }}?"
+      },
+      "detail": {
+        "title": "Category"
+      },
+      "shortName": "Short Name",
+      "fullName": "Full Name",
+      "theories": "Theories",
+      "formulas": "Formulas",
+      "decks": "Decks",
+      "tasks": "Tasks",
+      "quizzes": "Quizzes"
     }
+  }
 }

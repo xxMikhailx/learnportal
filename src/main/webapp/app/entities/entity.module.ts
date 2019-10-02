@@ -1,55 +1,51 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-    imports: [
-        RouterModule.forChild([
-            {
-                path: 'category',
-                loadChildren: './category/category.module#LearnportalCategoryModule'
-            },
-            {
-                path: 'theory',
-                loadChildren: './theory/theory.module#LearnportalTheoryModule'
-            },
-            {
-                path: 'formula',
-                loadChildren: './formula/formula.module#LearnportalFormulaModule'
-            },
-            {
-                path: 'deck',
-                loadChildren: './deck/deck.module#LearnportalDeckModule'
-            },
-            {
-                path: 'task',
-                loadChildren: './task/task.module#LearnportalTaskModule'
-            },
-            {
-                path: 'task-given-data',
-                loadChildren: './task-given-data/task-given-data.module#LearnportalTaskGivenDataModule'
-            },
-            {
-                path: 'task-find-data',
-                loadChildren: './task-find-data/task-find-data.module#LearnportalTaskFindDataModule'
-            },
-            {
-                path: 'quiz',
-                loadChildren: './quiz/quiz.module#LearnportalQuizModule'
-            },
-            {
-                path: 'quiz-question',
-                loadChildren: './quiz-question/quiz-question.module#LearnportalQuizQuestionModule'
-            },
-            {
-                path: 'question-answer',
-                loadChildren: './question-answer/question-answer.module#LearnportalQuestionAnswerModule'
-            }
-            /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
-        ])
-    ],
-    declarations: [],
-    entryComponents: [],
-    providers: [],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [
+    RouterModule.forChild([
+      {
+        path: 'category',
+        loadChildren: () => import('./category/category.module').then(m => m.LearnportalCategoryModule)
+      },
+      {
+        path: 'theory',
+        loadChildren: () => import('./theory/theory.module').then(m => m.LearnportalTheoryModule)
+      },
+      {
+        path: 'formula',
+        loadChildren: () => import('./formula/formula.module').then(m => m.LearnportalFormulaModule)
+      },
+      {
+        path: 'deck',
+        loadChildren: () => import('./deck/deck.module').then(m => m.LearnportalDeckModule)
+      },
+      {
+        path: 'task',
+        loadChildren: () => import('./task/task.module').then(m => m.LearnportalTaskModule)
+      },
+      {
+        path: 'task-given-data',
+        loadChildren: () => import('./task-given-data/task-given-data.module').then(m => m.LearnportalTaskGivenDataModule)
+      },
+      {
+        path: 'task-find-data',
+        loadChildren: () => import('./task-find-data/task-find-data.module').then(m => m.LearnportalTaskFindDataModule)
+      },
+      {
+        path: 'quiz',
+        loadChildren: () => import('./quiz/quiz.module').then(m => m.LearnportalQuizModule)
+      },
+      {
+        path: 'quiz-question',
+        loadChildren: () => import('./quiz-question/quiz-question.module').then(m => m.LearnportalQuizQuestionModule)
+      },
+      {
+        path: 'question-answer',
+        loadChildren: () => import('./question-answer/question-answer.module').then(m => m.LearnportalQuestionAnswerModule)
+      }
+      /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
+    ])
+  ]
 })
 export class LearnportalEntityModule {}

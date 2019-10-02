@@ -1,7 +1,4 @@
 package com.litelife.learnportal.domain;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -12,7 +9,6 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Objects;
 
 /**
  * A Task.
@@ -23,7 +19,7 @@ import java.util.Objects;
 public class Task implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -48,9 +44,11 @@ public class Task implements Serializable {
     @OneToMany(mappedBy = "task")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TaskGivenData> givenData = new HashSet<>();
+
     @OneToMany(mappedBy = "task")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TaskFindData> findData = new HashSet<>();
+
     @ManyToOne
     @JsonIgnoreProperties("tasks")
     private Category category;
@@ -185,19 +183,15 @@ public class Task implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Task)) {
             return false;
         }
-        Task task = (Task) o;
-        if (task.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), task.getId());
+        return id != null && id.equals(((Task) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

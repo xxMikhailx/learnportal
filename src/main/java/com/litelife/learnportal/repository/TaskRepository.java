@@ -1,5 +1,4 @@
 package com.litelife.learnportal.repository;
-
 import com.litelife.learnportal.domain.Task;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;

@@ -1,24 +1,25 @@
 {
-    "learnportalApp": {
-        "quizQuestion": {
-            "home": {
-                "title": "Quiz Questions",
-                "createLabel": "Создать новый Quiz Question",
-                "createOrEditLabel": "Создать или отредактировать Quiz Question"
-            },
-            "created": "Новый Quiz Question создан с идентификатором {{ param }}",
-            "updated": "Quiz Question обновлен с идентификатором {{ param }}",
-            "deleted": "Quiz Question удален с идентификатором {{ param }}",
-            "delete": {
-                "question": "Вы уверены что хотите удалить Quiz Question {{ id }}?"
-            },
-            "detail": {
-                "title": "Quiz Question"
-            },
-            "text": "Text",
-            "description": "Description",
-            "answers": "Answers",
-            "quiz": "Quiz"
-        }
+  "learnportalApp": {
+    "quizQuestion": {
+      "home": {
+        "title": "Quiz Questions",
+        "createLabel": "Создать новый Quiz Question",
+        "createOrEditLabel": "Создать или отредактировать Quiz Question",
+        "notFound": "No Quiz Questions found"
+      },
+      "created": "Новый Quiz Question создан с идентификатором {{ param }}",
+      "updated": "Quiz Question обновлен с идентификатором {{ param }}",
+      "deleted": "Quiz Question удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Quiz Question {{ id }}?"
+      },
+      "detail": {
+        "title": "Quiz Question"
+      },
+      "text": "Text",
+      "description": "Description",
+      "answers": "Answers",
+      "quiz": "Quiz"
     }
+  }
 }

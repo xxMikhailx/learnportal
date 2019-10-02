@@ -1,4 +1,3 @@
-/* tslint:disable max-line-length */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
@@ -8,33 +7,33 @@ import { FormulaDetailComponent } from 'app/entities/formula/formula-detail.comp
 import { Formula } from 'app/shared/model/formula.model';
 
 describe('Component Tests', () => {
-    describe('Formula Management Detail Component', () => {
-        let comp: FormulaDetailComponent;
-        let fixture: ComponentFixture<FormulaDetailComponent>;
-        const route = ({ data: of({ formula: new Formula(123) }) } as any) as ActivatedRoute;
+  describe('Formula Management Detail Component', () => {
+    let comp: FormulaDetailComponent;
+    let fixture: ComponentFixture<FormulaDetailComponent>;
+    const route = ({ data: of({ formula: new Formula(123) }) } as any) as ActivatedRoute;
 
-        beforeEach(() => {
-            TestBed.configureTestingModule({
-                imports: [LearnportalTestModule],
-                declarations: [FormulaDetailComponent],
-                providers: [{ provide: ActivatedRoute, useValue: route }]
-            })
-                .overrideTemplate(FormulaDetailComponent, '')
-                .compileComponents();
-            fixture = TestBed.createComponent(FormulaDetailComponent);
-            comp = fixture.componentInstance;
-        });
-
-        describe('OnInit', () => {
-            it('Should call load all on init', () => {
-                // GIVEN
-
-                // WHEN
-                comp.ngOnInit();
-
-                // THEN
-                expect(comp.formula).toEqual(jasmine.objectContaining({ id: 123 }));
-            });
-        });
+    beforeEach(() => {
+      TestBed.configureTestingModule({
+        imports: [LearnportalTestModule],
+        declarations: [FormulaDetailComponent],
+        providers: [{ provide: ActivatedRoute, useValue: route }]
+      })
+        .overrideTemplate(FormulaDetailComponent, '')
+        .compileComponents();
+      fixture = TestBed.createComponent(FormulaDetailComponent);
+      comp = fixture.componentInstance;
     });
+
+    describe('OnInit', () => {
+      it('Should call load all on init', () => {
+        // GIVEN
+
+        // WHEN
+        comp.ngOnInit();
+
+        // THEN
+        expect(comp.formula).toEqual(jasmine.objectContaining({ id: 123 }));
+      });
+    });
+  });
 });

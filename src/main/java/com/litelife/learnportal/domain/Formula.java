@@ -1,6 +1,4 @@
 package com.litelife.learnportal.domain;
-
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -9,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 /**
  * A Formula.
@@ -20,7 +17,7 @@ import java.util.Objects;
 public class Formula implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -108,19 +105,15 @@ public class Formula implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Formula)) {
             return false;
         }
-        Formula formula = (Formula) o;
-        if (formula.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), formula.getId());
+        return id != null && id.equals(((Formula) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

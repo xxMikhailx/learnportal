@@ -1,34 +1,18 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { LearnportalSharedModule } from 'app/shared';
-import {
-    DeckComponent,
-    DeckDetailComponent,
-    DeckUpdateComponent,
-    DeckDeletePopupComponent,
-    DeckDeleteDialogComponent,
-    deckRoute,
-    deckPopupRoute
-} from './';
+import { LearnportalSharedModule } from 'app/shared/shared.module';
+import { DeckComponent } from './deck.component';
+import { DeckDetailComponent } from './deck-detail.component';
+import { DeckUpdateComponent } from './deck-update.component';
+import { DeckDeletePopupComponent, DeckDeleteDialogComponent } from './deck-delete-dialog.component';
+import { deckRoute, deckPopupRoute } from './deck.route';
 
 const ENTITY_STATES = [...deckRoute, ...deckPopupRoute];
 
 @NgModule({
-    imports: [LearnportalSharedModule, RouterModule.forChild(ENTITY_STATES)],
-    declarations: [DeckComponent, DeckDetailComponent, DeckUpdateComponent, DeckDeleteDialogComponent, DeckDeletePopupComponent],
-    entryComponents: [DeckComponent, DeckUpdateComponent, DeckDeleteDialogComponent, DeckDeletePopupComponent],
-    providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [LearnportalSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  declarations: [DeckComponent, DeckDetailComponent, DeckUpdateComponent, DeckDeleteDialogComponent, DeckDeletePopupComponent],
+  entryComponents: [DeckDeleteDialogComponent]
 })
-export class LearnportalDeckModule {
-    constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-        this.languageHelper.language.subscribe((languageKey: string) => {
-            if (languageKey !== undefined) {
-                this.languageService.changeLanguage(languageKey);
-            }
-        });
-    }
-}
+export class LearnportalDeckModule {}
