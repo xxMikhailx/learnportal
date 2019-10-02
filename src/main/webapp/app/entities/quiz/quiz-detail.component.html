@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="quiz">
+            <h2><span jhiTranslate="learnportalApp.quiz.detail.title">Quiz</span> {{quiz.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="learnportalApp.quiz.title">Title</span></dt>
+                <dd>
+                    <span>{{quiz.title}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.quiz.description">Description</span></dt>
+                <dd>
+                    <span>{{quiz.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.quiz.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="quiz.category">
+                        <a [routerLink]="['/category', quiz.category?.id, 'view']">{{quiz.category?.fullName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/quiz', quiz.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

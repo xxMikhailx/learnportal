@@ -1,0 +1,27 @@
+{
+    "learnportalApp": {
+        "task": {
+            "home": {
+                "title": "Tasks",
+                "createLabel": "Создать новый Task",
+                "createOrEditLabel": "Создать или отредактировать Task"
+            },
+            "created": "Новый Task создан с идентификатором {{ param }}",
+            "updated": "Task обновлен с идентификатором {{ param }}",
+            "deleted": "Task удален с идентификатором {{ param }}",
+            "delete": {
+                "question": "Вы уверены что хотите удалить Task {{ id }}?"
+            },
+            "detail": {
+                "title": "Task"
+            },
+            "title": "Title",
+            "shortDescription": "Short Description",
+            "taskDescription": "Task Description",
+            "solution": "Solution",
+            "givenData": "Given Data",
+            "findData": "Find Data",
+            "category": "Category"
+        }
+    }
+}

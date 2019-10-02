@@ -1,0 +1,30 @@
+{
+    "name": "TaskGivenData",
+    "fields": [
+        {
+            "fieldName": "content",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "task",
+            "otherEntityRelationshipName": "givenData",
+            "relationshipName": "task",
+            "otherEntityField": "title"
+        }
+    ],
+    "changelogDate": "20190330124456",
+    "entityTableName": "task_given_data",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

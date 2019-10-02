@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="formula">
+            <h2><span jhiTranslate="learnportalApp.formula.detail.title">Formula</span> {{formula.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="learnportalApp.formula.title">Title</span></dt>
+                <dd>
+                    <span>{{formula.title}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.formula.description">Description</span></dt>
+                <dd>
+                    <span>{{formula.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.formula.equation">Equation</span></dt>
+                <dd>
+                    <span>{{formula.equation}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.formula.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="formula.category">
+                        <a [routerLink]="['/category', formula.category?.id, 'view']">{{formula.category?.fullName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/formula', formula.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

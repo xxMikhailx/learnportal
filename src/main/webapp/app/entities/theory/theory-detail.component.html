@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="theory">
+            <h2><span jhiTranslate="learnportalApp.theory.detail.title">Theory</span> {{theory.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="learnportalApp.theory.title">Title</span></dt>
+                <dd>
+                    <span>{{theory.title}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.theory.description">Description</span></dt>
+                <dd>
+                    <span>{{theory.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.theory.content">Content</span></dt>
+                <dd>
+                    <span>{{theory.content}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.theory.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="theory.category">
+                        <a [routerLink]="['/category', theory.category?.id, 'view']">{{theory.category?.fullName}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/theory', theory.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

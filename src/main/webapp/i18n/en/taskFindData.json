@@ -1,0 +1,22 @@
+{
+    "learnportalApp": {
+        "taskFindData": {
+            "home": {
+                "title": "Task Find Data",
+                "createLabel": "Create a new Task Find Data",
+                "createOrEditLabel": "Create or edit a Task Find Data"
+            },
+            "created": "A new Task Find Data is created with identifier {{ param }}",
+            "updated": "A Task Find Data is updated with identifier {{ param }}",
+            "deleted": "A Task Find Data is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Task Find Data {{ id }}?"
+            },
+            "detail": {
+                "title": "Task Find Data"
+            },
+            "content": "Content",
+            "task": "Task"
+        }
+    }
+}
