@@ -4,21 +4,21 @@ import { ActivatedRoute } from '@angular/router';
 import { IQuiz } from 'app/shared/model/quiz.model';
 
 @Component({
-    selector: 'jhi-quiz-detail',
-    templateUrl: './quiz-detail.component.html'
+  selector: 'jhi-quiz-detail',
+  templateUrl: './quiz-detail.component.html'
 })
 export class QuizDetailComponent implements OnInit {
-    quiz: IQuiz;
+  quiz: IQuiz;
 
-    constructor(protected activatedRoute: ActivatedRoute) {}
+  constructor(protected activatedRoute: ActivatedRoute) {}
 
-    ngOnInit() {
-        this.activatedRoute.data.subscribe(({ quiz }) => {
-            this.quiz = quiz;
-        });
-    }
+  ngOnInit() {
+    this.activatedRoute.data.subscribe(({ quiz }) => {
+      this.quiz = quiz;
+    });
+  }
 
-    previousState() {
-        window.history.back();
-    }
+  previousState() {
+    window.history.back();
+  }
 }

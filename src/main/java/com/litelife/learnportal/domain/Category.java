@@ -1,7 +1,4 @@
 package com.litelife.learnportal.domain;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -11,7 +8,6 @@ import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Objects;
 
 /**
  * A Category.
@@ -22,7 +18,7 @@ import java.util.Objects;
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,18 +33,23 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "category")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Theory> theories = new HashSet<>();
+
     @OneToMany(mappedBy = "category")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Formula> formulas = new HashSet<>();
+
     @OneToMany(mappedBy = "category")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Deck> decks = new HashSet<>();
+
     @OneToMany(mappedBy = "category")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Task> tasks = new HashSet<>();
+
     @OneToMany(mappedBy = "category")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Quiz> quizzes = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -215,19 +216,15 @@ public class Category implements Serializable {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Category)) {
             return false;
         }
-        Category category = (Category) o;
-        if (category.getId() == null || getId() == null) {
-            return false;
-        }
-        return Objects.equals(getId(), category.getId());
+        return id != null && id.equals(((Category) o).id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getId());
+        return 31;
     }
 
     @Override

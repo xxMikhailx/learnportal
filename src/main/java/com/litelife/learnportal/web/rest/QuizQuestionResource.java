@@ -1,11 +1,14 @@
 package com.litelife.learnportal.web.rest;
+
 import com.litelife.learnportal.domain.QuizQuestion;
 import com.litelife.learnportal.repository.QuizQuestionRepository;
 import com.litelife.learnportal.web.rest.errors.BadRequestAlertException;
-import com.litelife.learnportal.web.rest.util.HeaderUtil;
+
+import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * REST controller for managing QuizQuestion.
+ * REST controller for managing {@link com.litelife.learnportal.domain.QuizQuestion}.
  */
 @RestController
 @RequestMapping("/api")
@@ -27,6 +30,9 @@ public class QuizQuestionResource {
 
     private static final String ENTITY_NAME = "quizQuestion";
 
+    @Value("${jhipster.clientApp.name}")
+    private String applicationName;
+
     private final QuizQuestionRepository quizQuestionRepository;
 
     public QuizQuestionResource(QuizQuestionRepository quizQuestionRepository) {
@@ -34,11 +40,11 @@ public class QuizQuestionResource {
     }
 
     /**
-     * POST  /quiz-questions : Create a new quizQuestion.
+     * {@code POST  /quiz-questions} : Create a new quizQuestion.
      *
-     * @param quizQuestion the quizQuestion to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new quizQuestion, or with status 400 (Bad Request) if the quizQuestion has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param quizQuestion the quizQuestion to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new quizQuestion, or with status {@code 400 (Bad Request)} if the quizQuestion has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/quiz-questions")
     public ResponseEntity<QuizQuestion> createQuizQuestion(@Valid @RequestBody QuizQuestion quizQuestion) throws URISyntaxException {
@@ -48,18 +54,18 @@ public class QuizQuestionResource {
         }
         QuizQuestion result = quizQuestionRepository.save(quizQuestion);
         return ResponseEntity.created(new URI("/api/quiz-questions/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * PUT  /quiz-questions : Updates an existing quizQuestion.
+     * {@code PUT  /quiz-questions} : Updates an existing quizQuestion.
      *
-     * @param quizQuestion the quizQuestion to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated quizQuestion,
-     * or with status 400 (Bad Request) if the quizQuestion is not valid,
-     * or with status 500 (Internal Server Error) if the quizQuestion couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param quizQuestion the quizQuestion to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated quizQuestion,
+     * or with status {@code 400 (Bad Request)} if the quizQuestion is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the quizQuestion couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/quiz-questions")
     public ResponseEntity<QuizQuestion> updateQuizQuestion(@Valid @RequestBody QuizQuestion quizQuestion) throws URISyntaxException {
@@ -69,14 +75,15 @@ public class QuizQuestionResource {
         }
         QuizQuestion result = quizQuestionRepository.save(quizQuestion);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, quizQuestion.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, quizQuestion.getId().toString()))
             .body(result);
     }
 
     /**
-     * GET  /quiz-questions : get all the quizQuestions.
+     * {@code GET  /quiz-questions} : get all the quizQuestions.
      *
-     * @return the ResponseEntity with status 200 (OK) and the list of quizQuestions in body
+
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of quizQuestions in body.
      */
     @GetMapping("/quiz-questions")
     public List<QuizQuestion> getAllQuizQuestions() {
@@ -85,10 +92,10 @@ public class QuizQuestionResource {
     }
 
     /**
-     * GET  /quiz-questions/:id : get the "id" quizQuestion.
+     * {@code GET  /quiz-questions/:id} : get the "id" quizQuestion.
      *
-     * @param id the id of the quizQuestion to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the quizQuestion, or with status 404 (Not Found)
+     * @param id the id of the quizQuestion to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the quizQuestion, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/quiz-questions/{id}")
     public ResponseEntity<QuizQuestion> getQuizQuestion(@PathVariable Long id) {
@@ -98,15 +105,15 @@ public class QuizQuestionResource {
     }
 
     /**
-     * DELETE  /quiz-questions/:id : delete the "id" quizQuestion.
+     * {@code DELETE  /quiz-questions/:id} : delete the "id" quizQuestion.
      *
-     * @param id the id of the quizQuestion to delete
-     * @return the ResponseEntity with status 200 (OK)
+     * @param id the id of the quizQuestion to delete.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/quiz-questions/{id}")
     public ResponseEntity<Void> deleteQuizQuestion(@PathVariable Long id) {
         log.debug("REST request to delete QuizQuestion : {}", id);
         quizQuestionRepository.deleteById(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

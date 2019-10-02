@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Routes } from '@angular/router';
-import { UserRouteAccessService } from 'app/core';
+import { UserRouteAccessService } from 'app/core/auth/user-route-access-service';
 import { Observable, of } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { Formula } from 'app/shared/model/formula.model';
@@ -14,80 +14,80 @@ import { IFormula } from 'app/shared/model/formula.model';
 
 @Injectable({ providedIn: 'root' })
 export class FormulaResolve implements Resolve<IFormula> {
-    constructor(private service: FormulaService) {}
+  constructor(private service: FormulaService) {}
 
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IFormula> {
-        const id = route.params['id'] ? route.params['id'] : null;
-        if (id) {
-            return this.service.find(id).pipe(
-                filter((response: HttpResponse<Formula>) => response.ok),
-                map((formula: HttpResponse<Formula>) => formula.body)
-            );
-        }
-        return of(new Formula());
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<IFormula> {
+    const id = route.params['id'];
+    if (id) {
+      return this.service.find(id).pipe(
+        filter((response: HttpResponse<Formula>) => response.ok),
+        map((formula: HttpResponse<Formula>) => formula.body)
+      );
     }
+    return of(new Formula());
+  }
 }
 
 export const formulaRoute: Routes = [
-    {
-        path: '',
-        component: FormulaComponent,
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'learnportalApp.formula.home.title'
-        },
-        canActivate: [UserRouteAccessService]
+  {
+    path: '',
+    component: FormulaComponent,
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.formula.home.title'
     },
-    {
-        path: ':id/view',
-        component: FormulaDetailComponent,
-        resolve: {
-            formula: FormulaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'learnportalApp.formula.home.title'
-        },
-        canActivate: [UserRouteAccessService]
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: ':id/view',
+    component: FormulaDetailComponent,
+    resolve: {
+      formula: FormulaResolve
     },
-    {
-        path: 'new',
-        component: FormulaUpdateComponent,
-        resolve: {
-            formula: FormulaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'learnportalApp.formula.home.title'
-        },
-        canActivate: [UserRouteAccessService]
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.formula.home.title'
     },
-    {
-        path: ':id/edit',
-        component: FormulaUpdateComponent,
-        resolve: {
-            formula: FormulaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'learnportalApp.formula.home.title'
-        },
-        canActivate: [UserRouteAccessService]
-    }
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: 'new',
+    component: FormulaUpdateComponent,
+    resolve: {
+      formula: FormulaResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.formula.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: ':id/edit',
+    component: FormulaUpdateComponent,
+    resolve: {
+      formula: FormulaResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.formula.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  }
 ];
 
 export const formulaPopupRoute: Routes = [
-    {
-        path: ':id/delete',
-        component: FormulaDeletePopupComponent,
-        resolve: {
-            formula: FormulaResolve
-        },
-        data: {
-            authorities: ['ROLE_USER'],
-            pageTitle: 'learnportalApp.formula.home.title'
-        },
-        canActivate: [UserRouteAccessService],
-        outlet: 'popup'
-    }
+  {
+    path: ':id/delete',
+    component: FormulaDeletePopupComponent,
+    resolve: {
+      formula: FormulaResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.formula.home.title'
+    },
+    canActivate: [UserRouteAccessService],
+    outlet: 'popup'
+  }
 ];

@@ -5,10 +5,11 @@ import { LearnportalAppModule } from './app.module';
 ProdConfig();
 
 if (module['hot']) {
-    module['hot'].accept();
+  module['hot'].accept();
 }
 
 platformBrowserDynamic()
-    .bootstrapModule(LearnportalAppModule, { preserveWhitespaces: true })
-    .then(success => console.log(`Application started`))
-    .catch(err => console.error(err));
+  .bootstrapModule(LearnportalAppModule, { preserveWhitespaces: true })
+  // eslint-disable-next-line no-console
+  .then(success => console.log('Application started'))
+  .catch(err => console.error(err));

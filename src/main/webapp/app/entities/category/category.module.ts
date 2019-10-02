@@ -1,40 +1,24 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { LearnportalSharedModule } from 'app/shared';
-import {
-    CategoryComponent,
-    CategoryDetailComponent,
-    CategoryUpdateComponent,
-    CategoryDeletePopupComponent,
-    CategoryDeleteDialogComponent,
-    categoryRoute,
-    categoryPopupRoute
-} from './';
+import { LearnportalSharedModule } from 'app/shared/shared.module';
+import { CategoryComponent } from './category.component';
+import { CategoryDetailComponent } from './category-detail.component';
+import { CategoryUpdateComponent } from './category-update.component';
+import { CategoryDeletePopupComponent, CategoryDeleteDialogComponent } from './category-delete-dialog.component';
+import { categoryRoute, categoryPopupRoute } from './category.route';
 
 const ENTITY_STATES = [...categoryRoute, ...categoryPopupRoute];
 
 @NgModule({
-    imports: [LearnportalSharedModule, RouterModule.forChild(ENTITY_STATES)],
-    declarations: [
-        CategoryComponent,
-        CategoryDetailComponent,
-        CategoryUpdateComponent,
-        CategoryDeleteDialogComponent,
-        CategoryDeletePopupComponent
-    ],
-    entryComponents: [CategoryComponent, CategoryUpdateComponent, CategoryDeleteDialogComponent, CategoryDeletePopupComponent],
-    providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [LearnportalSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  declarations: [
+    CategoryComponent,
+    CategoryDetailComponent,
+    CategoryUpdateComponent,
+    CategoryDeleteDialogComponent,
+    CategoryDeletePopupComponent
+  ],
+  entryComponents: [CategoryDeleteDialogComponent]
 })
-export class LearnportalCategoryModule {
-    constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-        this.languageHelper.language.subscribe((languageKey: string) => {
-            if (languageKey !== undefined) {
-                this.languageService.changeLanguage(languageKey);
-            }
-        });
-    }
-}
+export class LearnportalCategoryModule {}

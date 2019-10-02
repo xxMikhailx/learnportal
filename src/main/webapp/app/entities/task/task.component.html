@@ -4,14 +4,17 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-task" [routerLink]="['/task/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="learnportalApp.task.home.createLabel">
-            Create new Task
+            Create a new Task
             </span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="tasks">
-        <table class="table table-striped">
+    <div class="alert alert-warning" *ngIf="tasks?.length === 0">
+        <span jhiTranslate="learnportalApp.task.home.notFound">No tasks found</span>
+    </div>
+    <div class="table-responsive" *ngIf="tasks?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -32,11 +35,11 @@
                 <td>{{task.solution}}</td>
                 <td>
                     <div *ngIf="task.category">
-                        <a [routerLink]="['../category', task.category?.id, 'view' ]" >{{task.category?.fullName}}</a>
+                        <a [routerLink]="['/category', task.category?.id, 'view' ]" >{{task.category?.fullName}}</a>
                     </div>
                 </td>
                 <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
+                    <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/task', task.id, 'view' ]"
                                 class="btn btn-info btn-sm">
@@ -50,7 +53,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', 'task', { outlets: { popup: task.id + '/delete'} }]"
+                                [routerLink]="['/task', { outlets: { popup: task.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

@@ -4,14 +4,17 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-theory" [routerLink]="['/theory/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="learnportalApp.theory.home.createLabel">
-            Create new Theory
+            Create a new Theory
             </span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="theories">
-        <table class="table table-striped">
+    <div class="alert alert-warning" *ngIf="theories?.length === 0">
+        <span jhiTranslate="learnportalApp.theory.home.notFound">No theories found</span>
+    </div>
+    <div class="table-responsive" *ngIf="theories?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -30,11 +33,11 @@
                 <td>{{theory.content}}</td>
                 <td>
                     <div *ngIf="theory.category">
-                        <a [routerLink]="['../category', theory.category?.id, 'view' ]" >{{theory.category?.fullName}}</a>
+                        <a [routerLink]="['/category', theory.category?.id, 'view' ]" >{{theory.category?.fullName}}</a>
                     </div>
                 </td>
                 <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
+                    <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/theory', theory.id, 'view' ]"
                                 class="btn btn-info btn-sm">
@@ -48,7 +51,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', 'theory', { outlets: { popup: theory.id + '/delete'} }]"
+                                [routerLink]="['/theory', { outlets: { popup: theory.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

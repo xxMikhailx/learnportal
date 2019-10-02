@@ -1,26 +1,26 @@
 <div class="row justify-content-center">
     <div class="col-8">
-        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
             <h2 id="jhi-category-heading" jhiTranslate="learnportalApp.category.home.createOrEditLabel">Create or edit a Category</h2>
             <div>
                 <jhi-alert-error></jhi-alert-error>
-                <div class="form-group" [hidden]="!category.id">
+                <div class="form-group" [hidden]="!editForm.get('id').value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
-                    <input type="text" class="form-control" id="id" name="id"
-                        [(ngModel)]="category.id" readonly />
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="learnportalApp.category.shortName" for="field_shortName">Short Name</label>
                     <input type="text" class="form-control" name="shortName" id="field_shortName"
-                        [(ngModel)]="category.shortName" />
+                           formControlName="shortName"/>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="learnportalApp.category.fullName" for="field_fullName">Full Name</label>
                     <input type="text" class="form-control" name="fullName" id="field_fullName"
-                        [(ngModel)]="category.fullName" required/>
-                    <div [hidden]="!(editForm.controls.fullName?.dirty && editForm.controls.fullName?.invalid)">
+                           formControlName="fullName"/>
+                    <div *ngIf="editForm.get('fullName').invalid && (editForm.get('fullName').dirty || editForm.get('fullName').touched)">
                         <small class="form-text text-danger"
-                        [hidden]="!editForm.controls.fullName?.errors?.required" jhiTranslate="entity.validation.required">
+                               *ngIf="editForm.get('fullName').errors.required" jhiTranslate="entity.validation.required">
                         This field is required.
                         </small>
                     </div>
@@ -31,7 +31,7 @@
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
                     <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
                 </button>
-                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
                     <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
                 </button>
             </div>

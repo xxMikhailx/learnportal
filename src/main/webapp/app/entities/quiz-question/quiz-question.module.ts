@@ -1,45 +1,24 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { LearnportalSharedModule } from 'app/shared';
-import {
-    QuizQuestionComponent,
-    QuizQuestionDetailComponent,
-    QuizQuestionUpdateComponent,
-    QuizQuestionDeletePopupComponent,
-    QuizQuestionDeleteDialogComponent,
-    quizQuestionRoute,
-    quizQuestionPopupRoute
-} from './';
+import { LearnportalSharedModule } from 'app/shared/shared.module';
+import { QuizQuestionComponent } from './quiz-question.component';
+import { QuizQuestionDetailComponent } from './quiz-question-detail.component';
+import { QuizQuestionUpdateComponent } from './quiz-question-update.component';
+import { QuizQuestionDeletePopupComponent, QuizQuestionDeleteDialogComponent } from './quiz-question-delete-dialog.component';
+import { quizQuestionRoute, quizQuestionPopupRoute } from './quiz-question.route';
 
 const ENTITY_STATES = [...quizQuestionRoute, ...quizQuestionPopupRoute];
 
 @NgModule({
-    imports: [LearnportalSharedModule, RouterModule.forChild(ENTITY_STATES)],
-    declarations: [
-        QuizQuestionComponent,
-        QuizQuestionDetailComponent,
-        QuizQuestionUpdateComponent,
-        QuizQuestionDeleteDialogComponent,
-        QuizQuestionDeletePopupComponent
-    ],
-    entryComponents: [
-        QuizQuestionComponent,
-        QuizQuestionUpdateComponent,
-        QuizQuestionDeleteDialogComponent,
-        QuizQuestionDeletePopupComponent
-    ],
-    providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [LearnportalSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  declarations: [
+    QuizQuestionComponent,
+    QuizQuestionDetailComponent,
+    QuizQuestionUpdateComponent,
+    QuizQuestionDeleteDialogComponent,
+    QuizQuestionDeletePopupComponent
+  ],
+  entryComponents: [QuizQuestionDeleteDialogComponent]
 })
-export class LearnportalQuizQuestionModule {
-    constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-        this.languageHelper.language.subscribe((languageKey: string) => {
-            if (languageKey !== undefined) {
-                this.languageService.changeLanguage(languageKey);
-            }
-        });
-    }
-}
+export class LearnportalQuizQuestionModule {}

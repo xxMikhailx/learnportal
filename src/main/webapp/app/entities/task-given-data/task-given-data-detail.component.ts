@@ -4,21 +4,21 @@ import { ActivatedRoute } from '@angular/router';
 import { ITaskGivenData } from 'app/shared/model/task-given-data.model';
 
 @Component({
-    selector: 'jhi-task-given-data-detail',
-    templateUrl: './task-given-data-detail.component.html'
+  selector: 'jhi-task-given-data-detail',
+  templateUrl: './task-given-data-detail.component.html'
 })
 export class TaskGivenDataDetailComponent implements OnInit {
-    taskGivenData: ITaskGivenData;
+  taskGivenData: ITaskGivenData;
 
-    constructor(protected activatedRoute: ActivatedRoute) {}
+  constructor(protected activatedRoute: ActivatedRoute) {}
 
-    ngOnInit() {
-        this.activatedRoute.data.subscribe(({ taskGivenData }) => {
-            this.taskGivenData = taskGivenData;
-        });
-    }
+  ngOnInit() {
+    this.activatedRoute.data.subscribe(({ taskGivenData }) => {
+      this.taskGivenData = taskGivenData;
+    });
+  }
 
-    previousState() {
-        window.history.back();
-    }
+  previousState() {
+    window.history.back();
+  }
 }

@@ -1,23 +1,24 @@
 {
-    "learnportalApp": {
-        "questionAnswer": {
-            "home": {
-                "title": "Question Answers",
-                "createLabel": "Создать новый Question Answer",
-                "createOrEditLabel": "Создать или отредактировать Question Answer"
-            },
-            "created": "Новый Question Answer создан с идентификатором {{ param }}",
-            "updated": "Question Answer обновлен с идентификатором {{ param }}",
-            "deleted": "Question Answer удален с идентификатором {{ param }}",
-            "delete": {
-                "question": "Вы уверены что хотите удалить Question Answer {{ id }}?"
-            },
-            "detail": {
-                "title": "Question Answer"
-            },
-            "text": "Text",
-            "correct": "Correct",
-            "question": "Question"
-        }
+  "learnportalApp": {
+    "questionAnswer": {
+      "home": {
+        "title": "Question Answers",
+        "createLabel": "Создать новый Question Answer",
+        "createOrEditLabel": "Создать или отредактировать Question Answer",
+        "notFound": "No Question Answers found"
+      },
+      "created": "Новый Question Answer создан с идентификатором {{ param }}",
+      "updated": "Question Answer обновлен с идентификатором {{ param }}",
+      "deleted": "Question Answer удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Question Answer {{ id }}?"
+      },
+      "detail": {
+        "title": "Question Answer"
+      },
+      "text": "Text",
+      "correct": "Correct",
+      "question": "Question"
     }
+  }
 }

@@ -1,34 +1,18 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { LearnportalSharedModule } from 'app/shared';
-import {
-    TheoryComponent,
-    TheoryDetailComponent,
-    TheoryUpdateComponent,
-    TheoryDeletePopupComponent,
-    TheoryDeleteDialogComponent,
-    theoryRoute,
-    theoryPopupRoute
-} from './';
+import { LearnportalSharedModule } from 'app/shared/shared.module';
+import { TheoryComponent } from './theory.component';
+import { TheoryDetailComponent } from './theory-detail.component';
+import { TheoryUpdateComponent } from './theory-update.component';
+import { TheoryDeletePopupComponent, TheoryDeleteDialogComponent } from './theory-delete-dialog.component';
+import { theoryRoute, theoryPopupRoute } from './theory.route';
 
 const ENTITY_STATES = [...theoryRoute, ...theoryPopupRoute];
 
 @NgModule({
-    imports: [LearnportalSharedModule, RouterModule.forChild(ENTITY_STATES)],
-    declarations: [TheoryComponent, TheoryDetailComponent, TheoryUpdateComponent, TheoryDeleteDialogComponent, TheoryDeletePopupComponent],
-    entryComponents: [TheoryComponent, TheoryUpdateComponent, TheoryDeleteDialogComponent, TheoryDeletePopupComponent],
-    providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [LearnportalSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  declarations: [TheoryComponent, TheoryDetailComponent, TheoryUpdateComponent, TheoryDeleteDialogComponent, TheoryDeletePopupComponent],
+  entryComponents: [TheoryDeleteDialogComponent]
 })
-export class LearnportalTheoryModule {
-    constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-        this.languageHelper.language.subscribe((languageKey: string) => {
-            if (languageKey !== undefined) {
-                this.languageService.changeLanguage(languageKey);
-            }
-        });
-    }
-}
+export class LearnportalTheoryModule {}

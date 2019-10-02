@@ -3,7 +3,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { SERVER_API_URL } from 'app/app.constants';
-import { createRequestOption } from 'app/shared';
+import { createRequestOption } from 'app/shared/util/request-util';
 import { ITaskFindData } from 'app/shared/model/task-find-data.model';
 
 type EntityResponseType = HttpResponse<ITaskFindData>;
@@ -11,28 +11,28 @@ type EntityArrayResponseType = HttpResponse<ITaskFindData[]>;
 
 @Injectable({ providedIn: 'root' })
 export class TaskFindDataService {
-    public resourceUrl = SERVER_API_URL + 'api/task-find-data';
+  public resourceUrl = SERVER_API_URL + 'api/task-find-data';
 
-    constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient) {}
 
-    create(taskFindData: ITaskFindData): Observable<EntityResponseType> {
-        return this.http.post<ITaskFindData>(this.resourceUrl, taskFindData, { observe: 'response' });
-    }
+  create(taskFindData: ITaskFindData): Observable<EntityResponseType> {
+    return this.http.post<ITaskFindData>(this.resourceUrl, taskFindData, { observe: 'response' });
+  }
 
-    update(taskFindData: ITaskFindData): Observable<EntityResponseType> {
-        return this.http.put<ITaskFindData>(this.resourceUrl, taskFindData, { observe: 'response' });
-    }
+  update(taskFindData: ITaskFindData): Observable<EntityResponseType> {
+    return this.http.put<ITaskFindData>(this.resourceUrl, taskFindData, { observe: 'response' });
+  }
 
-    find(id: number): Observable<EntityResponseType> {
-        return this.http.get<ITaskFindData>(`${this.resourceUrl}/${id}`, { observe: 'response' });
-    }
+  find(id: number): Observable<EntityResponseType> {
+    return this.http.get<ITaskFindData>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
 
-    query(req?: any): Observable<EntityArrayResponseType> {
-        const options = createRequestOption(req);
-        return this.http.get<ITaskFindData[]>(this.resourceUrl, { params: options, observe: 'response' });
-    }
+  query(req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<ITaskFindData[]>(this.resourceUrl, { params: options, observe: 'response' });
+  }
 
-    delete(id: number): Observable<HttpResponse<any>> {
-        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
-    }
+  delete(id: number): Observable<HttpResponse<any>> {
+    return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
 }

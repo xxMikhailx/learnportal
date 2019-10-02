@@ -1,24 +1,25 @@
 {
-    "learnportalApp": {
-        "deck": {
-            "home": {
-                "title": "Decks",
-                "createLabel": "Create a new Deck",
-                "createOrEditLabel": "Create or edit a Deck"
-            },
-            "created": "A new Deck is created with identifier {{ param }}",
-            "updated": "A Deck is updated with identifier {{ param }}",
-            "deleted": "A Deck is deleted with identifier {{ param }}",
-            "delete": {
-                "question": "Are you sure you want to delete Deck {{ id }}?"
-            },
-            "detail": {
-                "title": "Deck"
-            },
-            "title": "Title",
-            "description": "Description",
-            "deck": "Deck",
-            "category": "Category"
-        }
+  "learnportalApp": {
+    "deck": {
+      "home": {
+        "title": "Decks",
+        "createLabel": "Create a new Deck",
+        "createOrEditLabel": "Create or edit a Deck",
+        "notFound": "No Decks found"
+      },
+      "created": "A new Deck is created with identifier {{ param }}",
+      "updated": "A Deck is updated with identifier {{ param }}",
+      "deleted": "A Deck is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Deck {{ id }}?"
+      },
+      "detail": {
+        "title": "Deck"
+      },
+      "title": "Title",
+      "description": "Description",
+      "deck": "Deck",
+      "category": "Category"
     }
+  }
 }

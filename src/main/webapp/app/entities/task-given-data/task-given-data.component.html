@@ -4,14 +4,17 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-task-given-data" [routerLink]="['/task-given-data/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="learnportalApp.taskGivenData.home.createLabel">
-            Create new Task Given Data
+            Create a new Task Given Data
             </span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="taskGivenData">
-        <table class="table table-striped">
+    <div class="alert alert-warning" *ngIf="taskGivenData?.length === 0">
+        <span jhiTranslate="learnportalApp.taskGivenData.home.notFound">No taskGivenData found</span>
+    </div>
+    <div class="table-responsive" *ngIf="taskGivenData?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
@@ -26,11 +29,11 @@
                 <td>{{taskGivenData.content}}</td>
                 <td>
                     <div *ngIf="taskGivenData.task">
-                        <a [routerLink]="['../task', taskGivenData.task?.id, 'view' ]" >{{taskGivenData.task?.title}}</a>
+                        <a [routerLink]="['/task', taskGivenData.task?.id, 'view' ]" >{{taskGivenData.task?.title}}</a>
                     </div>
                 </td>
                 <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
+                    <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/task-given-data', taskGivenData.id, 'view' ]"
                                 class="btn btn-info btn-sm">
@@ -44,7 +47,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', 'task-given-data', { outlets: { popup: taskGivenData.id + '/delete'} }]"
+                                [routerLink]="['/task-given-data', { outlets: { popup: taskGivenData.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

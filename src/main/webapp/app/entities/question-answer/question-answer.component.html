@@ -4,14 +4,17 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-question-answer" [routerLink]="['/question-answer/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="learnportalApp.questionAnswer.home.createLabel">
-            Create new Question Answer
+            Create a new Question Answer
             </span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="questionAnswers">
-        <table class="table table-striped">
+    <div class="alert alert-warning" *ngIf="questionAnswers?.length === 0">
+        <span jhiTranslate="learnportalApp.questionAnswer.home.notFound">No questionAnswers found</span>
+    </div>
+    <div class="table-responsive" *ngIf="questionAnswers?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
@@ -28,11 +31,11 @@
                 <td>{{questionAnswer.correct}}</td>
                 <td>
                     <div *ngIf="questionAnswer.question">
-                        <a [routerLink]="['../quiz-question', questionAnswer.question?.id, 'view' ]" >{{questionAnswer.question?.text}}</a>
+                        <a [routerLink]="['/quiz-question', questionAnswer.question?.id, 'view' ]" >{{questionAnswer.question?.text}}</a>
                     </div>
                 </td>
                 <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
+                    <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/question-answer', questionAnswer.id, 'view' ]"
                                 class="btn btn-info btn-sm">
@@ -46,7 +49,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', 'question-answer', { outlets: { popup: questionAnswer.id + '/delete'} }]"
+                                [routerLink]="['/question-answer', { outlets: { popup: questionAnswer.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

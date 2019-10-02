@@ -4,7 +4,7 @@
       "packageName": "com.litelife.learnportal",
       "nativeLanguage": "ru"
     },
-    "jhipsterVersion": "5.8.2",
+    "jhipsterVersion": "6.3.1",
     "applicationType": "monolith",
     "baseName": "learnportal",
     "packageName": "com.litelife.learnportal",
@@ -38,6 +38,9 @@
     "languages": [
       "ru",
       "en"
-    ]
+    ],
+    "embeddableLaunchScript": false,
+    "clientTheme": "none",
+    "blueprints": []
   }
 }

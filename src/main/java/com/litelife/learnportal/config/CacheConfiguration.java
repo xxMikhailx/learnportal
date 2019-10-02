@@ -5,10 +5,11 @@ import java.time.Duration;
 import org.ehcache.config.builders.*;
 import org.ehcache.jsr107.Eh107Configuration;
 
-import io.github.jhipster.config.jcache.BeanClassLoaderAwareJCacheRegionFactory;
+import org.hibernate.cache.jcache.ConfigSettings;
 import io.github.jhipster.config.JHipsterProperties;
 
 import org.springframework.boot.autoconfigure.cache.JCacheManagerCustomizer;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernatePropertiesCustomizer;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.*;
 
@@ -19,9 +20,7 @@ public class CacheConfiguration {
     private final javax.cache.configuration.Configuration<Object, Object> jcacheConfiguration;
 
     public CacheConfiguration(JHipsterProperties jHipsterProperties) {
-        BeanClassLoaderAwareJCacheRegionFactory.setBeanClassLoader(this.getClass().getClassLoader());
-        JHipsterProperties.Cache.Ehcache ehcache =
-            jHipsterProperties.getCache().getEhcache();
+        JHipsterProperties.Cache.Ehcache ehcache = jHipsterProperties.getCache().getEhcache();
 
         jcacheConfiguration = Eh107Configuration.fromEhcacheCacheConfiguration(
             CacheConfigurationBuilder.newCacheConfigurationBuilder(Object.class, Object.class,
@@ -31,33 +30,46 @@ public class CacheConfiguration {
     }
 
     @Bean
+    public HibernatePropertiesCustomizer hibernatePropertiesCustomizer(javax.cache.CacheManager cacheManager) {
+        return hibernateProperties -> hibernateProperties.put(ConfigSettings.CACHE_MANAGER, cacheManager);
+    }
+
+    @Bean
     public JCacheManagerCustomizer cacheManagerCustomizer() {
         return cm -> {
-            cm.createCache(com.litelife.learnportal.repository.UserRepository.USERS_BY_LOGIN_CACHE, jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.repository.UserRepository.USERS_BY_EMAIL_CACHE, jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.User.class.getName(), jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Authority.class.getName(), jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.User.class.getName() + ".authorities", jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Category.class.getName(), jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Category.class.getName() + ".theories", jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Category.class.getName() + ".formulas", jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Category.class.getName() + ".decks", jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Category.class.getName() + ".tasks", jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Category.class.getName() + ".quizzes", jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Theory.class.getName(), jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Formula.class.getName(), jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Deck.class.getName(), jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Task.class.getName(), jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Task.class.getName() + ".givenData", jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Task.class.getName() + ".findData", jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.TaskGivenData.class.getName(), jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.TaskFindData.class.getName(), jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Quiz.class.getName(), jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.Quiz.class.getName() + ".questions", jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.QuizQuestion.class.getName(), jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.QuizQuestion.class.getName() + ".answers", jcacheConfiguration);
-            cm.createCache(com.litelife.learnportal.domain.QuestionAnswer.class.getName(), jcacheConfiguration);
+            createCache(cm, com.litelife.learnportal.repository.UserRepository.USERS_BY_LOGIN_CACHE);
+            createCache(cm, com.litelife.learnportal.repository.UserRepository.USERS_BY_EMAIL_CACHE);
+            createCache(cm, com.litelife.learnportal.domain.User.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.Authority.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.litelife.learnportal.domain.Category.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.Category.class.getName() + ".theories");
+            createCache(cm, com.litelife.learnportal.domain.Category.class.getName() + ".formulas");
+            createCache(cm, com.litelife.learnportal.domain.Category.class.getName() + ".decks");
+            createCache(cm, com.litelife.learnportal.domain.Category.class.getName() + ".tasks");
+            createCache(cm, com.litelife.learnportal.domain.Category.class.getName() + ".quizzes");
+            createCache(cm, com.litelife.learnportal.domain.Theory.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.Formula.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.Deck.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.Task.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.Task.class.getName() + ".givenData");
+            createCache(cm, com.litelife.learnportal.domain.Task.class.getName() + ".findData");
+            createCache(cm, com.litelife.learnportal.domain.TaskGivenData.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.TaskFindData.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.Quiz.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.Quiz.class.getName() + ".questions");
+            createCache(cm, com.litelife.learnportal.domain.QuizQuestion.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.QuizQuestion.class.getName() + ".answers");
+            createCache(cm, com.litelife.learnportal.domain.QuestionAnswer.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
+    }
+
+    private void createCache(javax.cache.CacheManager cm, String cacheName) {
+        javax.cache.Cache<Object, Object> cache = cm.getCache(cacheName);
+        if (cache != null) {
+            cm.destroyCache(cacheName);
+        }
+        cm.createCache(cacheName, jcacheConfiguration);
     }
 }

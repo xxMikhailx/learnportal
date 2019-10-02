@@ -4,14 +4,17 @@
         <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-formula" [routerLink]="['/formula/new']">
             <fa-icon [icon]="'plus'"></fa-icon>
             <span  jhiTranslate="learnportalApp.formula.home.createLabel">
-            Create new Formula
+            Create a new Formula
             </span>
         </button>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="table-responsive" *ngIf="formulas">
-        <table class="table table-striped">
+    <div class="alert alert-warning" *ngIf="formulas?.length === 0">
+        <span jhiTranslate="learnportalApp.formula.home.notFound">No formulas found</span>
+    </div>
+    <div class="table-responsive" *ngIf="formulas?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -30,11 +33,11 @@
                 <td>{{formula.equation}}</td>
                 <td>
                     <div *ngIf="formula.category">
-                        <a [routerLink]="['../category', formula.category?.id, 'view' ]" >{{formula.category?.fullName}}</a>
+                        <a [routerLink]="['/category', formula.category?.id, 'view' ]" >{{formula.category?.fullName}}</a>
                     </div>
                 </td>
                 <td class="text-right">
-                    <div class="btn-group flex-btn-group-container">
+                    <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/formula', formula.id, 'view' ]"
                                 class="btn btn-info btn-sm">
@@ -48,7 +51,7 @@
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
                         <button type="submit"
-                                [routerLink]="['/', 'formula', { outlets: { popup: formula.id + '/delete'} }]"
+                                [routerLink]="['/formula', { outlets: { popup: formula.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">

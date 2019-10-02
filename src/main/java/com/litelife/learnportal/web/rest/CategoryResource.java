@@ -1,11 +1,14 @@
 package com.litelife.learnportal.web.rest;
+
 import com.litelife.learnportal.domain.Category;
 import com.litelife.learnportal.repository.CategoryRepository;
 import com.litelife.learnportal.web.rest.errors.BadRequestAlertException;
-import com.litelife.learnportal.web.rest.util.HeaderUtil;
+
+import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +20,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * REST controller for managing Category.
+ * REST controller for managing {@link com.litelife.learnportal.domain.Category}.
  */
 @RestController
 @RequestMapping("/api")
@@ -27,6 +30,9 @@ public class CategoryResource {
 
     private static final String ENTITY_NAME = "category";
 
+    @Value("${jhipster.clientApp.name}")
+    private String applicationName;
+
     private final CategoryRepository categoryRepository;
 
     public CategoryResource(CategoryRepository categoryRepository) {
@@ -34,11 +40,11 @@ public class CategoryResource {
     }
 
     /**
-     * POST  /categories : Create a new category.
+     * {@code POST  /categories} : Create a new category.
      *
-     * @param category the category to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new category, or with status 400 (Bad Request) if the category has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param category the category to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new category, or with status {@code 400 (Bad Request)} if the category has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/categories")
     public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category) throws URISyntaxException {
@@ -48,18 +54,18 @@ public class CategoryResource {
         }
         Category result = categoryRepository.save(category);
         return ResponseEntity.created(new URI("/api/categories/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
 
     /**
-     * PUT  /categories : Updates an existing category.
+     * {@code PUT  /categories} : Updates an existing category.
      *
-     * @param category the category to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated category,
-     * or with status 400 (Bad Request) if the category is not valid,
-     * or with status 500 (Internal Server Error) if the category couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param category the category to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated category,
+     * or with status {@code 400 (Bad Request)} if the category is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the category couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/categories")
     public ResponseEntity<Category> updateCategory(@Valid @RequestBody Category category) throws URISyntaxException {
@@ -69,14 +75,15 @@ public class CategoryResource {
         }
         Category result = categoryRepository.save(category);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, category.getId().toString()))
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, category.getId().toString()))
             .body(result);
     }
 
     /**
-     * GET  /categories : get all the categories.
+     * {@code GET  /categories} : get all the categories.
      *
-     * @return the ResponseEntity with status 200 (OK) and the list of categories in body
+
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of categories in body.
      */
     @GetMapping("/categories")
     public List<Category> getAllCategories() {
@@ -85,10 +92,10 @@ public class CategoryResource {
     }
 
     /**
-     * GET  /categories/:id : get the "id" category.
+     * {@code GET  /categories/:id} : get the "id" category.
      *
-     * @param id the id of the category to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the category, or with status 404 (Not Found)
+     * @param id the id of the category to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the category, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/categories/{id}")
     public ResponseEntity<Category> getCategory(@PathVariable Long id) {
@@ -98,15 +105,15 @@ public class CategoryResource {
     }
 
     /**
-     * DELETE  /categories/:id : delete the "id" category.
+     * {@code DELETE  /categories/:id} : delete the "id" category.
      *
-     * @param id the id of the category to delete
-     * @return the ResponseEntity with status 200 (OK)
+     * @param id the id of the category to delete.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
     @DeleteMapping("/categories/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
         log.debug("REST request to delete Category : {}", id);
         categoryRepository.deleteById(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 }

@@ -1,45 +1,24 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { JhiLanguageService } from 'ng-jhipster';
-import { JhiLanguageHelper } from 'app/core';
 
-import { LearnportalSharedModule } from 'app/shared';
-import {
-    TaskGivenDataComponent,
-    TaskGivenDataDetailComponent,
-    TaskGivenDataUpdateComponent,
-    TaskGivenDataDeletePopupComponent,
-    TaskGivenDataDeleteDialogComponent,
-    taskGivenDataRoute,
-    taskGivenDataPopupRoute
-} from './';
+import { LearnportalSharedModule } from 'app/shared/shared.module';
+import { TaskGivenDataComponent } from './task-given-data.component';
+import { TaskGivenDataDetailComponent } from './task-given-data-detail.component';
+import { TaskGivenDataUpdateComponent } from './task-given-data-update.component';
+import { TaskGivenDataDeletePopupComponent, TaskGivenDataDeleteDialogComponent } from './task-given-data-delete-dialog.component';
+import { taskGivenDataRoute, taskGivenDataPopupRoute } from './task-given-data.route';
 
 const ENTITY_STATES = [...taskGivenDataRoute, ...taskGivenDataPopupRoute];
 
 @NgModule({
-    imports: [LearnportalSharedModule, RouterModule.forChild(ENTITY_STATES)],
-    declarations: [
-        TaskGivenDataComponent,
-        TaskGivenDataDetailComponent,
-        TaskGivenDataUpdateComponent,
-        TaskGivenDataDeleteDialogComponent,
-        TaskGivenDataDeletePopupComponent
-    ],
-    entryComponents: [
-        TaskGivenDataComponent,
-        TaskGivenDataUpdateComponent,
-        TaskGivenDataDeleteDialogComponent,
-        TaskGivenDataDeletePopupComponent
-    ],
-    providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
-    schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  imports: [LearnportalSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  declarations: [
+    TaskGivenDataComponent,
+    TaskGivenDataDetailComponent,
+    TaskGivenDataUpdateComponent,
+    TaskGivenDataDeleteDialogComponent,
+    TaskGivenDataDeletePopupComponent
+  ],
+  entryComponents: [TaskGivenDataDeleteDialogComponent]
 })
-export class LearnportalTaskGivenDataModule {
-    constructor(private languageService: JhiLanguageService, private languageHelper: JhiLanguageHelper) {
-        this.languageHelper.language.subscribe((languageKey: string) => {
-            if (languageKey !== undefined) {
-                this.languageService.changeLanguage(languageKey);
-            }
-        });
-    }
-}
+export class LearnportalTaskGivenDataModule {}
