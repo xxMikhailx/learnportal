@@ -6,17 +6,24 @@ import { filter, map } from 'rxjs/operators';
 import { JhiEventManager, JhiParseLinks, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
 import { ITheory } from 'app/shared/model/theory.model';
+import { ICategory } from 'app/shared/model/category.model';
 import { AccountService } from 'app/core/auth/account.service';
 
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { TheoryService } from './theory.service';
+import { CategoryService } from '../category/category.service';
 
 @Component({
   selector: 'jhi-theory',
-  templateUrl: './theory.component.html'
+  templateUrl: './theory.component.html',
+  styleUrls: ['./theory.component.scss']
 })
 export class TheoryComponent implements OnInit, OnDestroy {
   theories: ITheory[];
+  loadTheories: ITheory[];
+  categories: ICategory[];
+  searchValue: string;
+  categoryId: string;
   currentAccount: any;
   eventSubscriber: Subscription;
   itemsPerPage: number;
@@ -28,6 +35,7 @@ export class TheoryComponent implements OnInit, OnDestroy {
 
   constructor(
     protected theoryService: TheoryService,
+    protected categoryService: CategoryService,
     protected jhiAlertService: JhiAlertService,
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
@@ -35,6 +43,8 @@ export class TheoryComponent implements OnInit, OnDestroy {
     protected accountService: AccountService
   ) {
     this.theories = [];
+    this.loadTheories = [];
+    this.categories = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.page = 0;
     this.links = {
@@ -49,17 +59,60 @@ export class TheoryComponent implements OnInit, OnDestroy {
       .query({
         page: this.page,
         size: this.itemsPerPage,
-        sort: this.sort()
+        sort: this.sort(),
+        search: this.getSearchRequest()
       })
       .subscribe(
-        (res: HttpResponse<ITheory[]>) => this.paginateTheories(res.body, res.headers),
+        (res: HttpResponse<ITheory[]>) => this.addTheories(res.body, res.headers),
         (res: HttpErrorResponse) => this.onError(res.message)
       );
+    this.categoryService
+      .query()
+        .pipe(
+          filter((res: HttpResponse<ICategory[]>) => res.ok),
+          map((res: HttpResponse<ICategory[]>) => res.body)
+        )
+        .subscribe(
+          (res: ICategory[]) => {
+            this.categories = res;
+          },
+          (res: HttpErrorResponse) => this.onError(res.message)
+        );
+  }
+
+  reloadAll() {
+    this.page = 0;
+    this.theoryService
+      .query({
+        page: this.page,
+        size: this.itemsPerPage,
+        sort: this.sort(),
+        search: this.getSearchRequest()
+      })
+      .subscribe(
+        (res: HttpResponse<ITheory[]>) => this.resetTheories(res.body, res.headers),
+        (res: HttpErrorResponse) => this.onError(res.message)
+      );
+    this.categoryService
+      .query()
+        .pipe(
+          filter((res: HttpResponse<ICategory[]>) => res.ok),
+          map((res: HttpResponse<ICategory[]>) => res.body)
+        )
+        .subscribe(
+          (res: ICategory[]) => {
+            this.categories = res;
+          },
+          (res: HttpErrorResponse) => this.onError(res.message)
+        );
   }
 
   reset() {
     this.page = 0;
+    this.searchValue = "";
+    this.categoryId = "";
     this.theories = [];
+    this.categories = [];
     this.loadAll();
   }
 
@@ -104,7 +157,16 @@ export class TheoryComponent implements OnInit, OnDestroy {
     return result;
   }
 
-  protected paginateTheories(data: ITheory[], headers: HttpHeaders) {
+  protected resetTheories(data: ITheory[], headers: HttpHeaders) {
+    this.links = this.parseLinks.parse(headers.get('link'));
+    this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
+    this.theories.splice(0, this.theories.length);
+    for (let i = 0; i < data.length; i++) {
+      this.theories.push(data[i]);
+    }
+  }
+
+  protected addTheories(data: ITheory[], headers: HttpHeaders) {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     for (let i = 0; i < data.length; i++) {
@@ -115,4 +177,29 @@ export class TheoryComponent implements OnInit, OnDestroy {
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
   }
+
+  protected onKey(value: string) {
+      this.searchValue = value;
+      this.reloadAll();
+    }
+
+  protected onCategoryChange(value: string) {
+      this.categoryId = value;
+      this.reloadAll();
+    }
+
+    getSearchRequest() {
+      if (this.searchValue || this.categoryId) {
+         if (this.searchValue && this.categoryId) {
+            return "(title=='*" + this.searchValue + "*',description=='*" + this.searchValue + "*');category.id==" + this.categoryId;
+         }
+         if (this.searchValue) {
+            return "title=='*" + this.searchValue + "*',description=='*" + this.searchValue + "*'";
+         } else {
+            return "category.id==" + this.categoryId;
+         }
+      } else {
+         return "";
+      }
+    }
 }

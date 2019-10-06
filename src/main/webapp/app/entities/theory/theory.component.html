@@ -1,67 +1,47 @@
-<div>
-    <h2 id="page-heading">
-        <span jhiTranslate="learnportalApp.theory.home.title">Theories</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-theory" [routerLink]="['/theory/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="learnportalApp.theory.home.createLabel">
-            Create a new Theory
-            </span>
-        </button>
+<div >
+    <h2 id="page-heading" class="title text-center">
+        <span jhiTranslate="learnportalApp.theory.home.title"></span>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="alert alert-warning" *ngIf="theories?.length === 0">
-        <span jhiTranslate="learnportalApp.theory.home.notFound">No theories found</span>
-    </div>
-    <div class="table-responsive" *ngIf="theories?.length > 0">
-        <table class="table table-striped" aria-describedby="page-heading">
-            <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="title"><span jhiTranslate="learnportalApp.theory.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="description"><span jhiTranslate="learnportalApp.theory.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="content"><span jhiTranslate="learnportalApp.theory.content">Content</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="category.fullName"><span jhiTranslate="learnportalApp.theory.category">Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
-            <tr *ngFor="let theory of theories ;trackBy: trackId">
-                <td><a [routerLink]="['/theory', theory.id, 'view' ]">{{theory.id}}</a></td>
-                <td>{{theory.title}}</td>
-                <td>{{theory.description}}</td>
-                <td>{{theory.content}}</td>
-                <td>
-                    <div *ngIf="theory.category">
-                        <a [routerLink]="['/category', theory.category?.id, 'view' ]" >{{theory.category?.fullName}}</a>
+
+    <div class = "container col-offset-1">
+        <div class="row">
+            <div class="input-group mb-3 col">
+                <input #search (keyup)="onKey(search.value)" class="form-control" placeholder="{{'entity.action.liveSearch'| translate}}" type="text"> </div>
+            <div class="input-group mb-3 col-3">
+                <select #category (change)="onCategoryChange(category.value)" style = "width: 100%;" class="custom-select" id="inputGroupSelect01">
+                    <option selected value="" jhiTranslate="learnportalApp.category.choose"></option>
+                    <option *ngFor="let category of categories ;trackBy: trackId" value="{{category.id}}">{{category.shortName}}</option>
+                </select>
+            </div>
+            <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class=" col-2">
+                <button [routerLink]="['/theory/new']" style = "width: 100%;" class="btn btn-primary" type="button"><fa-icon [icon]="'plus'"></fa-icon> Добавить</button>
+            </div>
+        </div>
+
+        <div class="alert alert-warning" *ngIf="theories?.length === 0">
+            <span jhiTranslate="learnportalApp.theory.home.notFound"></span>
+        </div>
+
+        <div infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <div style = "margin-top: 30px;" class="card" *ngFor="let theory of theories ;trackBy: trackId">
+                <h5 style="background-color: #708090;" class="card-header theory-link">
+                    <a class="theory-link" [routerLink]="['/theory', theory.id, 'view' ]">
+                        <div class="row">
+                            <div style="color: white;" class="text-reduction col-6">{{theory.title}}</div>
+                            <div style="color: #CDCED0;" class="text-reduction col-6 text-right">{{theory.category?.shortName}}</div>
+                        </div>
+                    </a>
+                </h5>
+                <div class="card-body">
+                    <p title="{{theory.description}}" class="text-reduction card-text">{{theory.description}}</p>
+                    <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="text-right">
+                        <a class="edit-icon" style="color: green;" [routerLink]="['/theory', theory.id, 'edit' ]"><fa-icon class="col-1" [icon]="'pencil-alt'"></fa-icon></a>
+                        <a class="remove-icon" style="color: red;" [routerLink]="['/theory', { outlets: { popup: theory.id + '/delete'} }]"><fa-icon class="col-1" [icon]="'times'"></fa-icon></a>
                     </div>
-                </td>
-                <td class="text-right">
-                    <div class="btn-group">
-                        <button type="submit"
-                                [routerLink]="['/theory', theory.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/theory', theory.id, 'edit']"
-                                class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/theory', { outlets: { popup: theory.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

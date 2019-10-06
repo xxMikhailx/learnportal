@@ -29,7 +29,7 @@ export class TheoryService {
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<ITheory[]>(this.resourceUrl, { params: options, observe: 'response' });
+    return this.http.get<ITheory[]>(`${this.resourceUrl}/rsql`, { params: options, observe: 'response' });
   }
 
   delete(id: number): Observable<HttpResponse<any>> {
