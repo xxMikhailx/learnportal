@@ -5,6 +5,7 @@ import com.litelife.learnportal.config.DefaultProfileUtil;
 
 import io.github.jhipster.config.JHipsterConstants;
 
+import io.github.perplexhub.rsql.RSQLConfig;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 
 import java.net.InetAddress;
@@ -21,6 +23,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @SpringBootApplication
+@Import(RSQLConfig.class)
 @EnableConfigurationProperties({LiquibaseProperties.class, ApplicationProperties.class})
 public class LearnportalApp implements InitializingBean {
 
