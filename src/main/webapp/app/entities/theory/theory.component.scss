@@ -1,0 +1,36 @@
+%general-font-style {
+  font-style: normal;
+}
+
+.title {
+  @extend %general-font-style;
+  font-weight: 700 !important;
+  font-size: 32px !important;
+}
+
+.edit-icon {
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+.remove-icon {
+  font-size: 21px;
+  opacity: 0.6;
+}
+
+.theory-link {
+  opacity: 0.9;
+}
+
+.edit-icon:hover,
+.remove-icon:hover,
+.theory-link:hover {
+  text-decoration: none;
+  opacity: 1;
+}
+
+.text-reduction {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
