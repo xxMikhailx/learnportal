@@ -11,6 +11,11 @@ import { CategoryDetailComponent } from './category-detail.component';
 import { CategoryUpdateComponent } from './category-update.component';
 import { CategoryDeletePopupComponent } from './category-delete-dialog.component';
 import { ICategory } from 'app/shared/model/category.model';
+import { TheoryComponent } from 'app/entities/theory/theory.component';
+import { FormulaComponent } from 'app/entities/formula/formula.component';
+import { QuizComponent } from 'app/entities/quiz/quiz.component';
+import { TaskComponent } from 'app/entities/task/task.component';
+import { DeckComponent } from 'app/entities/deck/deck.component';
 
 @Injectable({ providedIn: 'root' })
 export class CategoryResolve implements Resolve<ICategory> {
@@ -71,6 +76,51 @@ export const categoryRoute: Routes = [
     data: {
       authorities: ['ROLE_USER'],
       pageTitle: 'learnportalApp.category.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: ':id/theory',
+    component: TheoryComponent,
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.theory.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: ':id/formula',
+    component: FormulaComponent,
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.formula.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: ':id/quiz',
+    component: QuizComponent,
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.quiz.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: ':id/task',
+    component: TaskComponent,
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.task.home.title'
+    },
+    canActivate: [UserRouteAccessService]
+  },
+  {
+    path: ':id/deck',
+    component: DeckComponent,
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'learnportalApp.deck.home.title'
     },
     canActivate: [UserRouteAccessService]
   }

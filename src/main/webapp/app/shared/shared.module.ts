@@ -7,10 +7,29 @@ import { JhiLoginModalComponent } from './login/login.component';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 import { RouterModule } from '@angular/router';
 import { SafeHtmlPipe } from 'app/pipes/safe-html.pipe';
+import { CategoryComponent } from 'app/entities/category/category.component';
+import { TheoryComponent } from 'app/entities/theory/theory.component';
+import { FormulaComponent } from 'app/entities/formula/formula.component';
+import { QuizComponent } from 'app/entities/quiz/quiz.component';
+import { TaskComponent } from 'app/entities/task/task.component';
+import { DeckComponent } from 'app/entities/deck/deck.component';
 
 @NgModule({
   imports: [RouterModule, LearnportalSharedLibsModule],
-  declarations: [FindLanguageFromKeyPipe, JhiAlertComponent, JhiAlertErrorComponent, JhiLoginModalComponent, HasAnyAuthorityDirective, SafeHtmlPipe],
+  declarations: [
+    FindLanguageFromKeyPipe,
+    JhiAlertComponent,
+    JhiAlertErrorComponent,
+    JhiLoginModalComponent,
+    HasAnyAuthorityDirective,
+    SafeHtmlPipe,
+    CategoryComponent,
+    TheoryComponent,
+    FormulaComponent,
+    QuizComponent,
+    TaskComponent,
+    DeckComponent
+  ],
   entryComponents: [JhiLoginModalComponent],
   exports: [
     LearnportalSharedLibsModule,
@@ -19,7 +38,14 @@ import { SafeHtmlPipe } from 'app/pipes/safe-html.pipe';
     JhiAlertErrorComponent,
     JhiLoginModalComponent,
     HasAnyAuthorityDirective,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    HasAnyAuthorityDirective,
+    CategoryComponent,
+    TheoryComponent,
+    FormulaComponent,
+    QuizComponent,
+    TaskComponent,
+    DeckComponent
   ]
 })
 export class LearnportalSharedModule {}

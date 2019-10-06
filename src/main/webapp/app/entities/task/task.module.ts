@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { LearnportalSharedModule } from 'app/shared/shared.module';
-import { TaskComponent } from './task.component';
 import { TaskDetailComponent } from './task-detail.component';
 import { TaskUpdateComponent } from './task-update.component';
 import { TaskDeletePopupComponent, TaskDeleteDialogComponent } from './task-delete-dialog.component';
@@ -12,7 +11,7 @@ const ENTITY_STATES = [...taskRoute, ...taskPopupRoute];
 
 @NgModule({
   imports: [LearnportalSharedModule, RouterModule.forChild(ENTITY_STATES)],
-  declarations: [TaskComponent, TaskDetailComponent, TaskUpdateComponent, TaskDeleteDialogComponent, TaskDeletePopupComponent],
+  declarations: [TaskDetailComponent, TaskUpdateComponent, TaskDeleteDialogComponent, TaskDeletePopupComponent],
   entryComponents: [TaskDeleteDialogComponent]
 })
 export class LearnportalTaskModule {}

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { LearnportalSharedModule } from 'app/shared/shared.module';
-import { FormulaComponent } from './formula.component';
 import { FormulaDetailComponent } from './formula-detail.component';
 import { FormulaUpdateComponent } from './formula-update.component';
 import { FormulaDeletePopupComponent, FormulaDeleteDialogComponent } from './formula-delete-dialog.component';
@@ -12,13 +11,7 @@ const ENTITY_STATES = [...formulaRoute, ...formulaPopupRoute];
 
 @NgModule({
   imports: [LearnportalSharedModule, RouterModule.forChild(ENTITY_STATES)],
-  declarations: [
-    FormulaComponent,
-    FormulaDetailComponent,
-    FormulaUpdateComponent,
-    FormulaDeleteDialogComponent,
-    FormulaDeletePopupComponent
-  ],
+  declarations: [FormulaDetailComponent, FormulaUpdateComponent, FormulaDeleteDialogComponent, FormulaDeletePopupComponent],
   entryComponents: [FormulaDeleteDialogComponent]
 })
 export class LearnportalFormulaModule {}
