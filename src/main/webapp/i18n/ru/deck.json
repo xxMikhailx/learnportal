@@ -2,7 +2,7 @@
   "learnportalApp": {
     "deck": {
       "home": {
-        "title": "Decks",
+        "title": "Презентации",
         "createLabel": "Создать новый Deck",
         "createOrEditLabel": "Создать или отредактировать Deck",
         "notFound": "No Decks found"

@@ -2,7 +2,7 @@
   "learnportalApp": {
     "quiz": {
       "home": {
-        "title": "Quizzes",
+        "title": "Тесты",
         "createLabel": "Создать новый Quiz",
         "createOrEditLabel": "Создать или отредактировать Quiz",
         "notFound": "No Quizzes found"
