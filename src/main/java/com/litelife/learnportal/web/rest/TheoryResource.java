@@ -3,25 +3,32 @@ package com.litelife.learnportal.web.rest;
 import com.litelife.learnportal.domain.Theory;
 import com.litelife.learnportal.repository.TheoryRepository;
 import com.litelife.learnportal.web.rest.errors.BadRequestAlertException;
-
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.github.perplexhub.rsql.RSQLSupport;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -88,15 +95,33 @@ public class TheoryResource {
     /**
      * {@code GET  /theories} : get all the theories.
      *
-
      * @param pageable the pagination information.
-
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of theories in body.
      */
     @GetMapping("/theories")
     public ResponseEntity<List<Theory>> getAllTheories(Pageable pageable) {
         log.debug("REST request to get a page of Theories");
         Page<Theory> page = theoryRepository.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * {@code GET  /theories/rsql} : get all the theories with RSQL.
+     *
+     * @param pageable the pagination information.
+     * @param search   the search criteria.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of theories in body.
+     */
+    @GetMapping("/theories/rsql")
+    public ResponseEntity<List<Theory>> getAllTheories(Pageable pageable, String search) {
+        log.debug("REST request to get a page of Theories with RSQL");
+        Page<Theory> page = null;
+        if (StringUtils.isBlank(search)) {
+            page = theoryRepository.findAll(pageable);
+        } else {
+            page = theoryRepository.findAll(RSQLSupport.toSpecification(search), pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
