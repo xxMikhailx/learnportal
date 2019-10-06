@@ -2,7 +2,7 @@
   "learnportalApp": {
     "task": {
       "home": {
-        "title": "Tasks",
+        "title": "Задачи",
         "createLabel": "Создать новый Task",
         "createOrEditLabel": "Создать или отредактировать Task",
         "notFound": "No Tasks found"

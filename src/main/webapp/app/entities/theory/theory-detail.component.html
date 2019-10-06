@@ -1,41 +1,91 @@
 <div class="row justify-content-center">
-    <div class="col-8">
-        <div *ngIf="theory">
-            <h2><span jhiTranslate="learnportalApp.theory.detail.title">Theory</span> {{theory.id}}</h2>
-            <hr>
-            <jhi-alert-error></jhi-alert-error>
-            <dl class="row-md jh-entity-details">
-                <dt><span jhiTranslate="learnportalApp.theory.title">Title</span></dt>
-                <dd>
-                    <span>{{theory.title}}</span>
-                </dd>
-                <dt><span jhiTranslate="learnportalApp.theory.description">Description</span></dt>
-                <dd>
-                    <span>{{theory.description}}</span>
-                </dd>
-                <dt><span jhiTranslate="learnportalApp.theory.content">Content</span></dt>
-                <dd>
-                    <span>{{theory.content}}</span>
-                </dd>
-                <dt><span jhiTranslate="learnportalApp.theory.category">Category</span></dt>
-                <dd>
-                    <div *ngIf="theory.category">
-                        <a [routerLink]="['/category', theory.category?.id, 'view']">{{theory.category?.fullName}}</a>
+    <div class="col-xl-8 col-lg-10 col-md-10 col-sm-10 col-12">
+        <div class="container">
+            <div *ngIf="theory">
+                <div class="row">
+                    <div class="col-8">
+                        <h1 class="title ">
+                            {{theory.title}}
+                        </h1>
                     </div>
-                </dd>
-            </dl>
 
-            <button type="submit"
-                    (click)="previousState()"
-                    class="btn btn-info">
-                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
-            </button>
+                    <div class="col-4 d-flex flex-row-reverse align-items-center" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                        <a class="remove-icon pl-2 text-danger" [routerLink]="['/theory', { outlets: { popup: theory.id + '/delete'} }]">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                        </a>
 
-            <button type="button"
-                    [routerLink]="['/theory', theory.id, 'edit']"
-                    class="btn btn-primary">
-                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
-            </button>
+                        <a class="edit-icon text-success" [routerLink]="['/theory', theory.id, 'edit']">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div *ngIf="theory.category" class="category mb-3">
+                            <time>{{theory.category?.fullName}}</time>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="description font-weight-bold">
+                            <p>{{theory.description}}</p>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="content">
+                            <p [innerHTML]="theory.content | safeHtml"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr *ngIf="theory.category"/>
+
+                <div class="row recommended-links" *ngIf="theory.category">
+                    <div class="col-12">
+                        <h1 class="title" jhiTranslate="global.categoryRelated"></h1>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 d-none">
+                        <a class="text-body" [routerLink]="['/category', theory.category?.id, 'formula' ]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="learnportalApp.formula.home.title"></span>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                        <a class="text-body" [routerLink]="['/category', theory.category?.id, 'deck' ]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="learnportalApp.deck.home.title"></span>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 d-none">
+                        <a class="text-body" [routerLink]="['/category', theory.category?.id, 'task' ]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="learnportalApp.task.home.title"></span>
+                        </a>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 d-none">
+                        <a class="text-body pb-3" [routerLink]="['/category', theory.category?.id, 'quiz' ]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="learnportalApp.quiz.home.title"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <hr *ngIf="theory.category"/>
+
+                <button type="submit"
+                        (click)="previousState()"
+                        class="btn btn-primary mb-2">
+                    <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"></span>
+                </button>
+            </div>
         </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
   "learnportalApp": {
     "formula": {
       "home": {
-        "title": "Formulas",
+        "title": "Формулы",
         "createLabel": "Создать новый Formula",
         "createOrEditLabel": "Создать или отредактировать Formula",
         "notFound": "No Formulas found"

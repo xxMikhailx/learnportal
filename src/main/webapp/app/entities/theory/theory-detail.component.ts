@@ -6,7 +6,8 @@ import { ITheory } from 'app/shared/model/theory.model';
 
 @Component({
   selector: 'jhi-theory-detail',
-  templateUrl: './theory-detail.component.html'
+  templateUrl: './theory-detail.component.html',
+  styleUrls: ['./theory-detail.component.scss']
 })
 export class TheoryDetailComponent implements OnInit {
   theory: ITheory;
