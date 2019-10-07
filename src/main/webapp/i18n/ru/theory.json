@@ -2,24 +2,24 @@
   "learnportalApp": {
     "theory": {
       "home": {
-        "title": "Theories",
-        "createLabel": "Создать новый Theory",
-        "createOrEditLabel": "Создать или отредактировать Theory",
-        "notFound": "No Theories found"
+        "title": "Теория",
+        "createLabel": "Создать новую теорию",
+        "createOrEditLabel": "Создать или отредактировать теорию",
+        "notFound": "Теория не найдена"
       },
-      "created": "Новый Theory создан с идентификатором {{ param }}",
-      "updated": "Theory обновлен с идентификатором {{ param }}",
-      "deleted": "Theory удален с идентификатором {{ param }}",
+      "created": "Новая теория с идентификатором {{ param }} создана",
+      "updated": "Теория с идентификатором {{ param }} обновлена",
+      "deleted": "Теория с идентификатором {{ param }} удалена",
       "delete": {
-        "question": "Вы уверены что хотите удалить Theory {{ id }}?"
+        "question": "Вы уверены что хотите удалить теорию '{{ title }}'?"
       },
       "detail": {
-        "title": "Theory"
+        "title": "Теория"
       },
-      "title": "Title",
-      "description": "Description",
-      "content": "Content",
-      "category": "Category"
+      "title": "Заголовок",
+      "description": "Описание",
+      "content": "Содержание",
+      "category": "Категория"
     }
   }
 }

@@ -6,7 +6,7 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <p id="jhi-delete-theory-heading" jhiTranslate="learnportalApp.theory.delete.question" [translateValues]="{id: theory.id}">Are you sure you want to delete this Theory?</p>
+        <p id="jhi-delete-theory-heading" jhiTranslate="learnportalApp.theory.delete.question" [translateValues]="{title: theory.title}">Are you sure you want to delete this Theory?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
