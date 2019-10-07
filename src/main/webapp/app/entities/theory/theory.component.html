@@ -8,9 +8,9 @@
     <div class = "container col-offset-1">
         <div class="row">
             <div class="input-group mb-3 col">
-                <input #search (keyup)="onKey(search.value)" class="form-control" placeholder="{{'entity.action.liveSearch'| translate}}" type="text"> </div>
+                <input [(ngModel)]="searchValue" (ngModelChange)="onSearchChange()" class="form-control" placeholder="{{'entity.action.liveSearch'| translate}}" type="text"> </div>
             <div class="input-group mb-3 col-3">
-                <select #category (change)="onCategoryChange(category.value)" style = "width: 100%;" class="custom-select" id="inputGroupSelect01">
+                <select [(ngModel)]="categoryId" (ngModelChange)="onSearchChange()" style = "width: 100%;" class="custom-select" id="inputGroupSelect01">
                     <option selected value="" jhiTranslate="learnportalApp.category.choose"></option>
                     <option *ngFor="let category of categories ;trackBy: trackId" value="{{category.id}}">{{category.shortName}}</option>
                 </select>
@@ -29,8 +29,8 @@
                 <h5 style="background-color: #708090;" class="card-header theory-link">
                     <a class="theory-link" [routerLink]="['/theory', theory.id, 'view' ]">
                         <div class="row">
-                            <div style="color: white;" class="text-reduction col-6">{{theory.title}}</div>
-                            <div style="color: #CDCED0;" class="text-reduction col-6 text-right">{{theory.category?.shortName}}</div>
+                            <div title="{{theory.title}}" style="color: white;" class="text-reduction col-6">{{theory.title}}</div>
+                            <div title="{{theory.category?.shortName}}" style="color: #CDCED0;" class="text-reduction col-6 text-right">{{theory.category?.shortName}}</div>
                         </div>
                     </a>
                 </h5>
