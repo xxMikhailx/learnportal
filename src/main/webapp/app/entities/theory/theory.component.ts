@@ -1,7 +1,7 @@
 import { ActivatedRoute } from "@angular/router";
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
+import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Subscription } from 'rxjs';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { filter, map } from 'rxjs/operators';
@@ -23,8 +23,6 @@ import { CategoryService } from '../category/category.service';
 })
 export class TheoryComponent implements OnInit, OnDestroy {
   theories: ITheory[];
-  location: Location;
-  loadTheories: ITheory[];
   categories: ICategory[];
   searchValue: string;
   categoryId: string;
@@ -45,11 +43,10 @@ export class TheoryComponent implements OnInit, OnDestroy {
     protected eventManager: JhiEventManager,
     protected parseLinks: JhiParseLinks,
     protected accountService: AccountService,
-    location: Location,
+    protected location: Location,
     protected route: ActivatedRoute
   ) {
     this.theories = [];
-    this.loadTheories = [];
     this.categories = [];
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.page = 0;
@@ -58,7 +55,6 @@ export class TheoryComponent implements OnInit, OnDestroy {
     };
     this.predicate = 'id';
     this.reverse = true;
-    this.location = location;
   }
 
   loadAll() {
@@ -80,9 +76,7 @@ export class TheoryComponent implements OnInit, OnDestroy {
           map((res: HttpResponse<ICategory[]>) => res.body)
         )
         .subscribe(
-          (res: ICategory[]) => {
-            this.categories = res;
-          },
+          (res: ICategory[]) => { this.categories = res; },
           (res: HttpErrorResponse) => this.onError(res.message)
         );
   }
@@ -107,9 +101,7 @@ export class TheoryComponent implements OnInit, OnDestroy {
           map((res: HttpResponse<ICategory[]>) => res.body)
         )
         .subscribe(
-          (res: ICategory[]) => {
-            this.categories = res;
-          },
+          (res: ICategory[]) => { this.categories = res; },
           (res: HttpErrorResponse) => this.onError(res.message)
         );
   }
@@ -187,7 +179,7 @@ export class TheoryComponent implements OnInit, OnDestroy {
     this.jhiAlertService.error(errorMessage, null, null);
   }
 
-  protected onSearchChange() {
+  onSearchChange() {
     this.updateLocationUrl();
     this.reloadAll();
   }
@@ -203,7 +195,7 @@ export class TheoryComponent implements OnInit, OnDestroy {
         return "category.id==" + this.categoryId;
       }
     } else {
-       return "";
+      return "";
     }
   }
 

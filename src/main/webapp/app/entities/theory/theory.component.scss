@@ -1,24 +1,17 @@
-%general-font-style {
-  font-style: normal;
-}
-
-.title {
-  @extend %general-font-style;
-  font-weight: 700 !important;
-  font-size: 32px !important;
-}
-
 .edit-icon {
+  color: green;
   font-size: 16px;
   opacity: 0.6;
 }
 
 .remove-icon {
+  color: red;
   font-size: 21px;
   opacity: 0.6;
 }
 
 .theory-link {
+  background-color: #657A90;
   opacity: 0.9;
 }
 
@@ -33,4 +26,20 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.theory-title-text {
+  color: white;
+}
+
+.theory-category-text {
+  color: #CDCED0;
+}
+
+.card-indent {
+  margin-top: 30px;
 }
