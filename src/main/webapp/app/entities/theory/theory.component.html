@@ -7,20 +7,20 @@
 
     <div class="container">
         <div class="row">
+            <div class="input-group mb-3 col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12 col-12">
+                <input [(ngModel)]="searchValue" (ngModelChange)="onSearchChange()" class="form-control" placeholder="{{'entity.action.liveSearch' | translate}}" type="text"></div>
             <div class="input-group mb-3 col">
-                <input [(ngModel)]="searchValue" (ngModelChange)="onSearchChange()" class="form-control" placeholder="{{'entity.action.liveSearch' | translate}}" type="text"> </div>
-            <div class="input-group mb-3 col-3">
                 <select [(ngModel)]="categoryId" (ngModelChange)="onSearchChange()" class="full-width custom-select">
                     <option selected value="" jhiTranslate="learnportalApp.category.choose"></option>
                     <option *ngFor="let category of categories ;trackBy: trackId" value="{{category.id}}">{{category.shortName}}</option>
                 </select>
             </div>
-            <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class=" col-2">
+            <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-xs-12 col-12">
                 <button [routerLink]="['/theory/new']" class="btn btn-primary full-width" type="button"><fa-icon [icon]="'plus'"></fa-icon> {{'entity.action.add' | translate}}</button>
             </div>
         </div>
 
-        <div class="alert alert-warning" *ngIf="theories?.length === 0">
+        <div class="alert alert-warning card-indent" *ngIf="theories?.length === 0">
             <span jhiTranslate="learnportalApp.theory.home.notFound"></span>
         </div>
 
