@@ -18,12 +18,12 @@
       },
       "shortName": "Short Name",
       "fullName": "Full Name",
-      "theories": "Теории",
+      "theories": "Теория",
       "formulas": "Formulas",
       "decks": "Decks",
       "tasks": "Tasks",
       "quizzes": "Quizzes",
-      "choose": "Выберите категорию ..."
+      "choose": "Категория ..."
     }
   }
 }
