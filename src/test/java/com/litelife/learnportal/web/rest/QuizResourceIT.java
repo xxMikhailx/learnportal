@@ -2,6 +2,7 @@ package com.litelife.learnportal.web.rest;
 
 import com.litelife.learnportal.LearnportalApp;
 import com.litelife.learnportal.domain.Quiz;
+import com.litelife.learnportal.domain.Category;
 import com.litelife.learnportal.repository.QuizRepository;
 import com.litelife.learnportal.web.rest.errors.ExceptionTranslator;
 
@@ -83,6 +84,16 @@ public class QuizResourceIT {
         Quiz quiz = new Quiz()
             .title(DEFAULT_TITLE)
             .description(DEFAULT_DESCRIPTION);
+        // Add required entity
+        Category category;
+        if (TestUtil.findAll(em, Category.class).isEmpty()) {
+            category = CategoryResourceIT.createEntity(em);
+            em.persist(category);
+            em.flush();
+        } else {
+            category = TestUtil.findAll(em, Category.class).get(0);
+        }
+        quiz.setCategory(category);
         return quiz;
     }
     /**
@@ -95,6 +106,16 @@ public class QuizResourceIT {
         Quiz quiz = new Quiz()
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION);
+        // Add required entity
+        Category category;
+        if (TestUtil.findAll(em, Category.class).isEmpty()) {
+            category = CategoryResourceIT.createUpdatedEntity(em);
+            em.persist(category);
+            em.flush();
+        } else {
+            category = TestUtil.findAll(em, Category.class).get(0);
+        }
+        quiz.setCategory(category);
         return quiz;
     }
 

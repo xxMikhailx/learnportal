@@ -24,7 +24,7 @@ export class TaskGivenDataUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     content: [null, [Validators.required]],
-    task: []
+    task: [null, Validators.required]
   });
 
   constructor(

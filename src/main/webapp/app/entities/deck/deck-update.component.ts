@@ -27,7 +27,7 @@ export class DeckUpdateComponent implements OnInit {
     description: [],
     deck: [null, [Validators.required]],
     deckContentType: [],
-    category: []
+    category: [null, Validators.required]
   });
 
   constructor(

@@ -2,6 +2,7 @@ package com.litelife.learnportal.web.rest;
 
 import com.litelife.learnportal.LearnportalApp;
 import com.litelife.learnportal.domain.Formula;
+import com.litelife.learnportal.domain.Category;
 import com.litelife.learnportal.repository.FormulaRepository;
 import com.litelife.learnportal.web.rest.errors.ExceptionTranslator;
 
@@ -87,6 +88,16 @@ public class FormulaResourceIT {
             .title(DEFAULT_TITLE)
             .description(DEFAULT_DESCRIPTION)
             .equation(DEFAULT_EQUATION);
+        // Add required entity
+        Category category;
+        if (TestUtil.findAll(em, Category.class).isEmpty()) {
+            category = CategoryResourceIT.createEntity(em);
+            em.persist(category);
+            em.flush();
+        } else {
+            category = TestUtil.findAll(em, Category.class).get(0);
+        }
+        formula.setCategory(category);
         return formula;
     }
     /**
@@ -100,6 +111,16 @@ public class FormulaResourceIT {
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
             .equation(UPDATED_EQUATION);
+        // Add required entity
+        Category category;
+        if (TestUtil.findAll(em, Category.class).isEmpty()) {
+            category = CategoryResourceIT.createUpdatedEntity(em);
+            em.persist(category);
+            em.flush();
+        } else {
+            category = TestUtil.findAll(em, Category.class).get(0);
+        }
+        formula.setCategory(category);
         return formula;
     }
 

@@ -26,7 +26,7 @@ export class FormulaUpdateComponent implements OnInit {
     title: [null, [Validators.required]],
     description: [],
     equation: [null, [Validators.required, Validators.maxLength(1024)]],
-    category: []
+    category: [null, Validators.required]
   });
 
   constructor(

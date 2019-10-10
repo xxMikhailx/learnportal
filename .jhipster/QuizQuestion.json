@@ -25,6 +25,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "quiz",
             "otherEntityRelationshipName": "questions",
+            "relationshipValidateRules": "required",
             "relationshipName": "quiz",
             "otherEntityField": "title"
         }

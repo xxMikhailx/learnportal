@@ -1,11 +1,11 @@
-id;title;description;content
-1;Industrial;connect Markets Chief;../fake-data/blob/hipster.txt
-2;capacitor archive;sky blue Tasty Plastic Pizza;../fake-data/blob/hipster.txt
-3;compress South Georgia and the South Sandwich Islands;compelling mission-critical;../fake-data/blob/hipster.txt
-4;bifurcated scalable;Small;../fake-data/blob/hipster.txt
-5;deliverables reinvent 24 hour;overriding;../fake-data/blob/hipster.txt
-6;monitor 1080p Checking Account;world-class Frozen IB;../fake-data/blob/hipster.txt
-7;Highway Ergonomic;moratorium moratorium;../fake-data/blob/hipster.txt
-8;New York tangible Mississippi;Frozen bus;../fake-data/blob/hipster.txt
-9;hard drive Robust Networked;Poland;../fake-data/blob/hipster.txt
-10;Small partnerships;Outdoors;../fake-data/blob/hipster.txt
+id;title;description;content;category_id
+1;mobile Fish;Home Loan Account Table Computer;../fake-data/blob/hipster.txt;1
+2;Trace;Savings Account alarm;../fake-data/blob/hipster.txt;2
+3;Tasty Metal Bacon;red Chips Soap;../fake-data/blob/hipster.txt;3
+4;Home Loan Account;web-readiness;../fake-data/blob/hipster.txt;4
+5;Namibia;Steel zero administration;../fake-data/blob/hipster.txt;5
+6;Multi-channelled Licensed;grey Cambridgeshire;../fake-data/blob/hipster.txt;6
+7;Canyon HDD;Table Small Frozen Sausages Planner;../fake-data/blob/hipster.txt;7
+8;envisioneer Music Public-key;infomediaries;../fake-data/blob/hipster.txt;8
+9;Investment Account;Games Regional Digitized;../fake-data/blob/hipster.txt;9
+10;copy convergence;Mayotte;../fake-data/blob/hipster.txt;10

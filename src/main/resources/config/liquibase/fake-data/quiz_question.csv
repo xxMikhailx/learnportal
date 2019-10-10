@@ -1,11 +1,11 @@
-id;text;description
-1;Managed Dobra application;../fake-data/blob/hipster.txt
-2;Fantastic;../fake-data/blob/hipster.txt
-3;Liechtenstein Buckinghamshire monetize;../fake-data/blob/hipster.txt
-4;Direct;../fake-data/blob/hipster.txt
-5;Small Frozen Salad bypassing;../fake-data/blob/hipster.txt
-6;time-frame Quality;../fake-data/blob/hipster.txt
-7;Borders Borders Practical;../fake-data/blob/hipster.txt
-8;methodical;../fake-data/blob/hipster.txt
-9;Pakistan;../fake-data/blob/hipster.txt
-10;parse;../fake-data/blob/hipster.txt
+id;text;description;quiz_id
+1;Developer Shoes Music;../fake-data/blob/hipster.txt;1
+2;Buckinghamshire Hollow Shoes;../fake-data/blob/hipster.txt;2
+3;withdrawal Generic Frozen Tuna;../fake-data/blob/hipster.txt;3
+4;Gorgeous Cotton Chair Personal Loan Account Borders;../fake-data/blob/hipster.txt;4
+5;Norfolk Island Chilean Peso Unidades de fomento Checking Account;../fake-data/blob/hipster.txt;5
+6;invoice Outdoors New York;../fake-data/blob/hipster.txt;6
+7;multi-byte Jamaican Dollar North Carolina;../fake-data/blob/hipster.txt;7
+8;Station;../fake-data/blob/hipster.txt;8
+9;parsing Investment Account;../fake-data/blob/hipster.txt;9
+10;Branding Dynamic black;../fake-data/blob/hipster.txt;10

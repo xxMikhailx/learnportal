@@ -27,6 +27,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "category",
             "otherEntityRelationshipName": "formulas",
+            "relationshipValidateRules": "required",
             "relationshipName": "category",
             "otherEntityField": "fullName"
         }

@@ -26,7 +26,7 @@ export class TheoryUpdateComponent implements OnInit {
     title: [null, [Validators.required]],
     description: [],
     content: [null, [Validators.required]],
-    category: []
+    category: [null, Validators.required]
   });
 
   constructor(

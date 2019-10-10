@@ -29,9 +29,15 @@
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="learnportalApp.quizQuestion.quiz" for="field_quiz">Quiz</label>
                     <select class="form-control" id="field_quiz" name="quiz" formControlName="quiz">
-                        <option [ngValue]="null"></option>
+                        <option *ngIf="!editForm.get('quiz').value" [ngValue]="null" selected></option>
                         <option [ngValue]="quizOption.id === editForm.get('quiz').value?.id ? editForm.get('quiz').value : quizOption" *ngFor="let quizOption of quizzes; trackBy: trackQuizById">{{quizOption.title}}</option>
                     </select>
+                </div>
+                <div *ngIf="editForm.get('quiz').invalid && (editForm.get('quiz').dirty || editForm.get('quiz').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('quiz').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
                 </div>
             </div>
             <div>

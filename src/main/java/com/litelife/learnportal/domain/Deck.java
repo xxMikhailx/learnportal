@@ -37,7 +37,8 @@ public class Deck implements Serializable {
     @Column(name = "deck_content_type", nullable = false)
     private String deckContentType;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("decks")
     private Category category;
 

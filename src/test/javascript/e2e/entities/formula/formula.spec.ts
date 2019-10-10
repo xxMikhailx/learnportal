@@ -3,7 +3,7 @@ import { browser, ExpectedConditions as ec, promise } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { FormulaComponentsPage, FormulaDeleteDialog, FormulaUpdatePage } from './formula.page-object';
+import { FormulaComponentsPage, /* FormulaDeleteDialog, */ FormulaUpdatePage } from './formula.page-object';
 
 const expect = chai.expect;
 
@@ -12,7 +12,7 @@ describe('Formula e2e test', () => {
   let signInPage: SignInPage;
   let formulaUpdatePage: FormulaUpdatePage;
   let formulaComponentsPage: FormulaComponentsPage;
-  let formulaDeleteDialog: FormulaDeleteDialog;
+  /* let formulaDeleteDialog: FormulaDeleteDialog; */
 
   before(async () => {
     await browser.get('/');
@@ -36,35 +36,36 @@ describe('Formula e2e test', () => {
     await formulaUpdatePage.cancel();
   });
 
-  it('should create and save Formulas', async () => {
-    const nbButtonsBeforeCreate = await formulaComponentsPage.countDeleteButtons();
+  /*  it('should create and save Formulas', async () => {
+        const nbButtonsBeforeCreate = await formulaComponentsPage.countDeleteButtons();
 
-    await formulaComponentsPage.clickOnCreateButton();
-    await promise.all([
-      formulaUpdatePage.setTitleInput('title'),
-      formulaUpdatePage.setDescriptionInput('description'),
-      formulaUpdatePage.setEquationInput('equation'),
-      formulaUpdatePage.categorySelectLastOption()
-    ]);
-    expect(await formulaUpdatePage.getTitleInput()).to.eq('title', 'Expected Title value to be equals to title');
-    expect(await formulaUpdatePage.getDescriptionInput()).to.eq('description', 'Expected Description value to be equals to description');
-    expect(await formulaUpdatePage.getEquationInput()).to.eq('equation', 'Expected Equation value to be equals to equation');
-    await formulaUpdatePage.save();
-    expect(await formulaUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
+        await formulaComponentsPage.clickOnCreateButton();
+        await promise.all([
+            formulaUpdatePage.setTitleInput('title'),
+            formulaUpdatePage.setDescriptionInput('description'),
+            formulaUpdatePage.setEquationInput('equation'),
+            formulaUpdatePage.categorySelectLastOption(),
+        ]);
+        expect(await formulaUpdatePage.getTitleInput()).to.eq('title', 'Expected Title value to be equals to title');
+        expect(await formulaUpdatePage.getDescriptionInput()).to.eq('description', 'Expected Description value to be equals to description');
+        expect(await formulaUpdatePage.getEquationInput()).to.eq('equation', 'Expected Equation value to be equals to equation');
+        await formulaUpdatePage.save();
+        expect(await formulaUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 
-    expect(await formulaComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
-  });
+        expect(await formulaComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
+    }); */
 
-  it('should delete last Formula', async () => {
-    const nbButtonsBeforeDelete = await formulaComponentsPage.countDeleteButtons();
-    await formulaComponentsPage.clickOnLastDeleteButton();
+  /*  it('should delete last Formula', async () => {
+        const nbButtonsBeforeDelete = await formulaComponentsPage.countDeleteButtons();
+        await formulaComponentsPage.clickOnLastDeleteButton();
 
-    formulaDeleteDialog = new FormulaDeleteDialog();
-    expect(await formulaDeleteDialog.getDialogTitle()).to.eq('learnportalApp.formula.delete.question');
-    await formulaDeleteDialog.clickOnConfirmButton();
+        formulaDeleteDialog = new FormulaDeleteDialog();
+        expect(await formulaDeleteDialog.getDialogTitle())
+            .to.eq('learnportalApp.formula.delete.question');
+        await formulaDeleteDialog.clickOnConfirmButton();
 
-    expect(await formulaComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-  });
+        expect(await formulaComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
+    }); */
 
   after(async () => {
     await navBarPage.autoSignOut();

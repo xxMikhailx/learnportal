@@ -2,6 +2,7 @@ package com.litelife.learnportal.web.rest;
 
 import com.litelife.learnportal.LearnportalApp;
 import com.litelife.learnportal.domain.QuizQuestion;
+import com.litelife.learnportal.domain.Quiz;
 import com.litelife.learnportal.repository.QuizQuestionRepository;
 import com.litelife.learnportal.web.rest.errors.ExceptionTranslator;
 
@@ -84,6 +85,16 @@ public class QuizQuestionResourceIT {
         QuizQuestion quizQuestion = new QuizQuestion()
             .text(DEFAULT_TEXT)
             .description(DEFAULT_DESCRIPTION);
+        // Add required entity
+        Quiz quiz;
+        if (TestUtil.findAll(em, Quiz.class).isEmpty()) {
+            quiz = QuizResourceIT.createEntity(em);
+            em.persist(quiz);
+            em.flush();
+        } else {
+            quiz = TestUtil.findAll(em, Quiz.class).get(0);
+        }
+        quizQuestion.setQuiz(quiz);
         return quizQuestion;
     }
     /**
@@ -96,6 +107,16 @@ public class QuizQuestionResourceIT {
         QuizQuestion quizQuestion = new QuizQuestion()
             .text(UPDATED_TEXT)
             .description(UPDATED_DESCRIPTION);
+        // Add required entity
+        Quiz quiz;
+        if (TestUtil.findAll(em, Quiz.class).isEmpty()) {
+            quiz = QuizResourceIT.createUpdatedEntity(em);
+            em.persist(quiz);
+            em.flush();
+        } else {
+            quiz = TestUtil.findAll(em, Quiz.class).get(0);
+        }
+        quizQuestion.setQuiz(quiz);
         return quizQuestion;
     }
 

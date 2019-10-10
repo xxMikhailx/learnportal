@@ -25,7 +25,7 @@ export class QuizQuestionUpdateComponent implements OnInit {
     id: [],
     text: [null, [Validators.required]],
     description: [],
-    quiz: []
+    quiz: [null, Validators.required]
   });
 
   constructor(

@@ -1,11 +1,11 @@
-id;text;correct
-1;neural Wooden Optimization;true
-2;Designer;false
-3;circuit Guam;true
-4;Liaison;true
-5;generating SDD bypassing;false
-6;Centralized revolutionize International;false
-7;Avon;false
-8;Maine PCI SAS;false
-9;Principal Pennsylvania dynamic;true
-10;Buckinghamshire;false
+id;text;correct;question_id
+1;yellow;false;1
+2;Ergonomic Rubber Chicken;false;2
+3;withdrawal;false;3
+4;Armenian Dram wireless directional;false;4
+5;Solomon Islands Dollar;false;5
+6;Accountability Handmade Cotton Bacon;true;6
+7;China;false;7
+8;South Dakota Wyoming interface;false;8
+9;Robust Louisiana;true;9
+10;Texas Managed Dobra;true;10

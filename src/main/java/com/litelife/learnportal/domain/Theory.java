@@ -34,7 +34,8 @@ public class Theory implements Serializable {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("theories")
     private Category category;
 

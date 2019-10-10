@@ -2,6 +2,7 @@ package com.litelife.learnportal.web.rest;
 
 import com.litelife.learnportal.LearnportalApp;
 import com.litelife.learnportal.domain.Theory;
+import com.litelife.learnportal.domain.Category;
 import com.litelife.learnportal.repository.TheoryRepository;
 import com.litelife.learnportal.web.rest.errors.ExceptionTranslator;
 
@@ -88,6 +89,16 @@ public class TheoryResourceIT {
             .title(DEFAULT_TITLE)
             .description(DEFAULT_DESCRIPTION)
             .content(DEFAULT_CONTENT);
+        // Add required entity
+        Category category;
+        if (TestUtil.findAll(em, Category.class).isEmpty()) {
+            category = CategoryResourceIT.createEntity(em);
+            em.persist(category);
+            em.flush();
+        } else {
+            category = TestUtil.findAll(em, Category.class).get(0);
+        }
+        theory.setCategory(category);
         return theory;
     }
     /**
@@ -101,6 +112,16 @@ public class TheoryResourceIT {
             .title(UPDATED_TITLE)
             .description(UPDATED_DESCRIPTION)
             .content(UPDATED_CONTENT);
+        // Add required entity
+        Category category;
+        if (TestUtil.findAll(em, Category.class).isEmpty()) {
+            category = CategoryResourceIT.createUpdatedEntity(em);
+            em.persist(category);
+            em.flush();
+        } else {
+            category = TestUtil.findAll(em, Category.class).get(0);
+        }
+        theory.setCategory(category);
         return theory;
     }
 

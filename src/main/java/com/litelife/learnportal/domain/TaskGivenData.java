@@ -26,7 +26,8 @@ public class TaskGivenData implements Serializable {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("givenData")
     private Task task;
 
