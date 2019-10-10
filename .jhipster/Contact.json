@@ -1,0 +1,40 @@
+{
+    "name": "Contact",
+    "fields": [
+        {
+            "fieldName": "text",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "contactType",
+            "fieldType": "ContactType",
+            "fieldValues": "CONTACT,LINK"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "mainPage",
+            "otherEntityRelationshipName": "contacts",
+            "relationshipValidateRules": "required",
+            "relationshipName": "mainPage",
+            "otherEntityField": "motto"
+        }
+    ],
+    "changelogDate": "20191010144449",
+    "entityTableName": "contact",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

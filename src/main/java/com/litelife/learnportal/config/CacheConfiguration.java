@@ -61,6 +61,9 @@ public class CacheConfiguration {
             createCache(cm, com.litelife.learnportal.domain.QuizQuestion.class.getName());
             createCache(cm, com.litelife.learnportal.domain.QuizQuestion.class.getName() + ".answers");
             createCache(cm, com.litelife.learnportal.domain.QuestionAnswer.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.MainPage.class.getName());
+            createCache(cm, com.litelife.learnportal.domain.MainPage.class.getName() + ".contacts");
+            createCache(cm, com.litelife.learnportal.domain.Contact.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
