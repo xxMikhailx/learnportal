@@ -2,6 +2,7 @@ package com.litelife.learnportal.web.rest;
 
 import com.litelife.learnportal.LearnportalApp;
 import com.litelife.learnportal.domain.Task;
+import com.litelife.learnportal.domain.Category;
 import com.litelife.learnportal.repository.TaskRepository;
 import com.litelife.learnportal.web.rest.errors.ExceptionTranslator;
 
@@ -92,6 +93,16 @@ public class TaskResourceIT {
             .shortDescription(DEFAULT_SHORT_DESCRIPTION)
             .taskDescription(DEFAULT_TASK_DESCRIPTION)
             .solution(DEFAULT_SOLUTION);
+        // Add required entity
+        Category category;
+        if (TestUtil.findAll(em, Category.class).isEmpty()) {
+            category = CategoryResourceIT.createEntity(em);
+            em.persist(category);
+            em.flush();
+        } else {
+            category = TestUtil.findAll(em, Category.class).get(0);
+        }
+        task.setCategory(category);
         return task;
     }
     /**
@@ -106,6 +117,16 @@ public class TaskResourceIT {
             .shortDescription(UPDATED_SHORT_DESCRIPTION)
             .taskDescription(UPDATED_TASK_DESCRIPTION)
             .solution(UPDATED_SOLUTION);
+        // Add required entity
+        Category category;
+        if (TestUtil.findAll(em, Category.class).isEmpty()) {
+            category = CategoryResourceIT.createUpdatedEntity(em);
+            em.persist(category);
+            em.flush();
+        } else {
+            category = TestUtil.findAll(em, Category.class).get(0);
+        }
+        task.setCategory(category);
         return task;
     }
 

@@ -30,7 +30,8 @@ public class QuestionAnswer implements Serializable {
     @Column(name = "correct", nullable = false)
     private Boolean correct;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("answers")
     private QuizQuestion question;
 

@@ -34,7 +34,8 @@ public class Formula implements Serializable {
     @Column(name = "equation", length = 1024, nullable = false)
     private String equation;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("formulas")
     private Category category;
 

@@ -2,6 +2,7 @@ package com.litelife.learnportal.web.rest;
 
 import com.litelife.learnportal.LearnportalApp;
 import com.litelife.learnportal.domain.Deck;
+import com.litelife.learnportal.domain.Category;
 import com.litelife.learnportal.repository.DeckRepository;
 import com.litelife.learnportal.web.rest.errors.ExceptionTranslator;
 
@@ -91,6 +92,16 @@ public class DeckResourceIT {
             .description(DEFAULT_DESCRIPTION)
             .deck(DEFAULT_DECK)
             .deckContentType(DEFAULT_DECK_CONTENT_TYPE);
+        // Add required entity
+        Category category;
+        if (TestUtil.findAll(em, Category.class).isEmpty()) {
+            category = CategoryResourceIT.createEntity(em);
+            em.persist(category);
+            em.flush();
+        } else {
+            category = TestUtil.findAll(em, Category.class).get(0);
+        }
+        deck.setCategory(category);
         return deck;
     }
     /**
@@ -105,6 +116,16 @@ public class DeckResourceIT {
             .description(UPDATED_DESCRIPTION)
             .deck(UPDATED_DECK)
             .deckContentType(UPDATED_DECK_CONTENT_TYPE);
+        // Add required entity
+        Category category;
+        if (TestUtil.findAll(em, Category.class).isEmpty()) {
+            category = CategoryResourceIT.createUpdatedEntity(em);
+            em.persist(category);
+            em.flush();
+        } else {
+            category = TestUtil.findAll(em, Category.class).get(0);
+        }
+        deck.setCategory(category);
         return deck;
     }
 

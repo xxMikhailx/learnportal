@@ -3,7 +3,7 @@ import { browser, ExpectedConditions as ec, promise } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { TaskGivenDataComponentsPage, TaskGivenDataDeleteDialog, TaskGivenDataUpdatePage } from './task-given-data.page-object';
+import { TaskGivenDataComponentsPage, /* TaskGivenDataDeleteDialog, */ TaskGivenDataUpdatePage } from './task-given-data.page-object';
 
 const expect = chai.expect;
 
@@ -12,7 +12,7 @@ describe('TaskGivenData e2e test', () => {
   let signInPage: SignInPage;
   let taskGivenDataUpdatePage: TaskGivenDataUpdatePage;
   let taskGivenDataComponentsPage: TaskGivenDataComponentsPage;
-  let taskGivenDataDeleteDialog: TaskGivenDataDeleteDialog;
+  /* let taskGivenDataDeleteDialog: TaskGivenDataDeleteDialog; */
 
   before(async () => {
     await browser.get('/');
@@ -36,28 +36,32 @@ describe('TaskGivenData e2e test', () => {
     await taskGivenDataUpdatePage.cancel();
   });
 
-  it('should create and save TaskGivenData', async () => {
-    const nbButtonsBeforeCreate = await taskGivenDataComponentsPage.countDeleteButtons();
+  /*  it('should create and save TaskGivenData', async () => {
+        const nbButtonsBeforeCreate = await taskGivenDataComponentsPage.countDeleteButtons();
 
-    await taskGivenDataComponentsPage.clickOnCreateButton();
-    await promise.all([taskGivenDataUpdatePage.setContentInput('content'), taskGivenDataUpdatePage.taskSelectLastOption()]);
-    expect(await taskGivenDataUpdatePage.getContentInput()).to.eq('content', 'Expected Content value to be equals to content');
-    await taskGivenDataUpdatePage.save();
-    expect(await taskGivenDataUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
+        await taskGivenDataComponentsPage.clickOnCreateButton();
+        await promise.all([
+            taskGivenDataUpdatePage.setContentInput('content'),
+            taskGivenDataUpdatePage.taskSelectLastOption(),
+        ]);
+        expect(await taskGivenDataUpdatePage.getContentInput()).to.eq('content', 'Expected Content value to be equals to content');
+        await taskGivenDataUpdatePage.save();
+        expect(await taskGivenDataUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 
-    expect(await taskGivenDataComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
-  });
+        expect(await taskGivenDataComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
+    }); */
 
-  it('should delete last TaskGivenData', async () => {
-    const nbButtonsBeforeDelete = await taskGivenDataComponentsPage.countDeleteButtons();
-    await taskGivenDataComponentsPage.clickOnLastDeleteButton();
+  /*  it('should delete last TaskGivenData', async () => {
+        const nbButtonsBeforeDelete = await taskGivenDataComponentsPage.countDeleteButtons();
+        await taskGivenDataComponentsPage.clickOnLastDeleteButton();
 
-    taskGivenDataDeleteDialog = new TaskGivenDataDeleteDialog();
-    expect(await taskGivenDataDeleteDialog.getDialogTitle()).to.eq('learnportalApp.taskGivenData.delete.question');
-    await taskGivenDataDeleteDialog.clickOnConfirmButton();
+        taskGivenDataDeleteDialog = new TaskGivenDataDeleteDialog();
+        expect(await taskGivenDataDeleteDialog.getDialogTitle())
+            .to.eq('learnportalApp.taskGivenData.delete.question');
+        await taskGivenDataDeleteDialog.clickOnConfirmButton();
 
-    expect(await taskGivenDataComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-  });
+        expect(await taskGivenDataComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
+    }); */
 
   after(async () => {
     await navBarPage.autoSignOut();

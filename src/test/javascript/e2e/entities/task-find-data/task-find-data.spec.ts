@@ -3,7 +3,7 @@ import { browser, ExpectedConditions as ec, promise } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { TaskFindDataComponentsPage, TaskFindDataDeleteDialog, TaskFindDataUpdatePage } from './task-find-data.page-object';
+import { TaskFindDataComponentsPage, /* TaskFindDataDeleteDialog, */ TaskFindDataUpdatePage } from './task-find-data.page-object';
 
 const expect = chai.expect;
 
@@ -12,7 +12,7 @@ describe('TaskFindData e2e test', () => {
   let signInPage: SignInPage;
   let taskFindDataUpdatePage: TaskFindDataUpdatePage;
   let taskFindDataComponentsPage: TaskFindDataComponentsPage;
-  let taskFindDataDeleteDialog: TaskFindDataDeleteDialog;
+  /* let taskFindDataDeleteDialog: TaskFindDataDeleteDialog; */
 
   before(async () => {
     await browser.get('/');
@@ -36,28 +36,32 @@ describe('TaskFindData e2e test', () => {
     await taskFindDataUpdatePage.cancel();
   });
 
-  it('should create and save TaskFindData', async () => {
-    const nbButtonsBeforeCreate = await taskFindDataComponentsPage.countDeleteButtons();
+  /*  it('should create and save TaskFindData', async () => {
+        const nbButtonsBeforeCreate = await taskFindDataComponentsPage.countDeleteButtons();
 
-    await taskFindDataComponentsPage.clickOnCreateButton();
-    await promise.all([taskFindDataUpdatePage.setContentInput('content'), taskFindDataUpdatePage.taskSelectLastOption()]);
-    expect(await taskFindDataUpdatePage.getContentInput()).to.eq('content', 'Expected Content value to be equals to content');
-    await taskFindDataUpdatePage.save();
-    expect(await taskFindDataUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
+        await taskFindDataComponentsPage.clickOnCreateButton();
+        await promise.all([
+            taskFindDataUpdatePage.setContentInput('content'),
+            taskFindDataUpdatePage.taskSelectLastOption(),
+        ]);
+        expect(await taskFindDataUpdatePage.getContentInput()).to.eq('content', 'Expected Content value to be equals to content');
+        await taskFindDataUpdatePage.save();
+        expect(await taskFindDataUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 
-    expect(await taskFindDataComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
-  });
+        expect(await taskFindDataComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
+    }); */
 
-  it('should delete last TaskFindData', async () => {
-    const nbButtonsBeforeDelete = await taskFindDataComponentsPage.countDeleteButtons();
-    await taskFindDataComponentsPage.clickOnLastDeleteButton();
+  /*  it('should delete last TaskFindData', async () => {
+        const nbButtonsBeforeDelete = await taskFindDataComponentsPage.countDeleteButtons();
+        await taskFindDataComponentsPage.clickOnLastDeleteButton();
 
-    taskFindDataDeleteDialog = new TaskFindDataDeleteDialog();
-    expect(await taskFindDataDeleteDialog.getDialogTitle()).to.eq('learnportalApp.taskFindData.delete.question');
-    await taskFindDataDeleteDialog.clickOnConfirmButton();
+        taskFindDataDeleteDialog = new TaskFindDataDeleteDialog();
+        expect(await taskFindDataDeleteDialog.getDialogTitle())
+            .to.eq('learnportalApp.taskFindData.delete.question');
+        await taskFindDataDeleteDialog.clickOnConfirmButton();
 
-    expect(await taskFindDataComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-  });
+        expect(await taskFindDataComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
+    }); */
 
   after(async () => {
     await navBarPage.autoSignOut();

@@ -26,7 +26,8 @@ public class TaskFindData implements Serializable {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("findData")
     private Task task;
 

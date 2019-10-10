@@ -24,6 +24,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "category",
             "otherEntityRelationshipName": "quizzes",
+            "relationshipValidateRules": "required",
             "relationshipName": "category",
             "otherEntityField": "fullName"
         }

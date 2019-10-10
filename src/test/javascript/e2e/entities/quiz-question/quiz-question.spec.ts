@@ -3,7 +3,7 @@ import { browser, ExpectedConditions as ec, promise } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { QuizQuestionComponentsPage, QuizQuestionDeleteDialog, QuizQuestionUpdatePage } from './quiz-question.page-object';
+import { QuizQuestionComponentsPage, /* QuizQuestionDeleteDialog, */ QuizQuestionUpdatePage } from './quiz-question.page-object';
 
 const expect = chai.expect;
 
@@ -12,7 +12,7 @@ describe('QuizQuestion e2e test', () => {
   let signInPage: SignInPage;
   let quizQuestionUpdatePage: QuizQuestionUpdatePage;
   let quizQuestionComponentsPage: QuizQuestionComponentsPage;
-  let quizQuestionDeleteDialog: QuizQuestionDeleteDialog;
+  /* let quizQuestionDeleteDialog: QuizQuestionDeleteDialog; */
 
   before(async () => {
     await browser.get('/');
@@ -36,36 +36,34 @@ describe('QuizQuestion e2e test', () => {
     await quizQuestionUpdatePage.cancel();
   });
 
-  it('should create and save QuizQuestions', async () => {
-    const nbButtonsBeforeCreate = await quizQuestionComponentsPage.countDeleteButtons();
+  /*  it('should create and save QuizQuestions', async () => {
+        const nbButtonsBeforeCreate = await quizQuestionComponentsPage.countDeleteButtons();
 
-    await quizQuestionComponentsPage.clickOnCreateButton();
-    await promise.all([
-      quizQuestionUpdatePage.setTextInput('text'),
-      quizQuestionUpdatePage.setDescriptionInput('description'),
-      quizQuestionUpdatePage.quizSelectLastOption()
-    ]);
-    expect(await quizQuestionUpdatePage.getTextInput()).to.eq('text', 'Expected Text value to be equals to text');
-    expect(await quizQuestionUpdatePage.getDescriptionInput()).to.eq(
-      'description',
-      'Expected Description value to be equals to description'
-    );
-    await quizQuestionUpdatePage.save();
-    expect(await quizQuestionUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
+        await quizQuestionComponentsPage.clickOnCreateButton();
+        await promise.all([
+            quizQuestionUpdatePage.setTextInput('text'),
+            quizQuestionUpdatePage.setDescriptionInput('description'),
+            quizQuestionUpdatePage.quizSelectLastOption(),
+        ]);
+        expect(await quizQuestionUpdatePage.getTextInput()).to.eq('text', 'Expected Text value to be equals to text');
+        expect(await quizQuestionUpdatePage.getDescriptionInput()).to.eq('description', 'Expected Description value to be equals to description');
+        await quizQuestionUpdatePage.save();
+        expect(await quizQuestionUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 
-    expect(await quizQuestionComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
-  });
+        expect(await quizQuestionComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
+    }); */
 
-  it('should delete last QuizQuestion', async () => {
-    const nbButtonsBeforeDelete = await quizQuestionComponentsPage.countDeleteButtons();
-    await quizQuestionComponentsPage.clickOnLastDeleteButton();
+  /*  it('should delete last QuizQuestion', async () => {
+        const nbButtonsBeforeDelete = await quizQuestionComponentsPage.countDeleteButtons();
+        await quizQuestionComponentsPage.clickOnLastDeleteButton();
 
-    quizQuestionDeleteDialog = new QuizQuestionDeleteDialog();
-    expect(await quizQuestionDeleteDialog.getDialogTitle()).to.eq('learnportalApp.quizQuestion.delete.question');
-    await quizQuestionDeleteDialog.clickOnConfirmButton();
+        quizQuestionDeleteDialog = new QuizQuestionDeleteDialog();
+        expect(await quizQuestionDeleteDialog.getDialogTitle())
+            .to.eq('learnportalApp.quizQuestion.delete.question');
+        await quizQuestionDeleteDialog.clickOnConfirmButton();
 
-    expect(await quizQuestionComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-  });
+        expect(await quizQuestionComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
+    }); */
 
   after(async () => {
     await navBarPage.autoSignOut();

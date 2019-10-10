@@ -36,7 +36,8 @@ public class QuizQuestion implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<QuestionAnswer> answers = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @NotNull
     @JsonIgnoreProperties("questions")
     private Quiz quiz;
 

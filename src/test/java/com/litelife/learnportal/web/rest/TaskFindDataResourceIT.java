@@ -2,6 +2,7 @@ package com.litelife.learnportal.web.rest;
 
 import com.litelife.learnportal.LearnportalApp;
 import com.litelife.learnportal.domain.TaskFindData;
+import com.litelife.learnportal.domain.Task;
 import com.litelife.learnportal.repository.TaskFindDataRepository;
 import com.litelife.learnportal.web.rest.errors.ExceptionTranslator;
 
@@ -79,6 +80,16 @@ public class TaskFindDataResourceIT {
     public static TaskFindData createEntity(EntityManager em) {
         TaskFindData taskFindData = new TaskFindData()
             .content(DEFAULT_CONTENT);
+        // Add required entity
+        Task task;
+        if (TestUtil.findAll(em, Task.class).isEmpty()) {
+            task = TaskResourceIT.createEntity(em);
+            em.persist(task);
+            em.flush();
+        } else {
+            task = TestUtil.findAll(em, Task.class).get(0);
+        }
+        taskFindData.setTask(task);
         return taskFindData;
     }
     /**
@@ -90,6 +101,16 @@ public class TaskFindDataResourceIT {
     public static TaskFindData createUpdatedEntity(EntityManager em) {
         TaskFindData taskFindData = new TaskFindData()
             .content(UPDATED_CONTENT);
+        // Add required entity
+        Task task;
+        if (TestUtil.findAll(em, Task.class).isEmpty()) {
+            task = TaskResourceIT.createUpdatedEntity(em);
+            em.persist(task);
+            em.flush();
+        } else {
+            task = TestUtil.findAll(em, Task.class).get(0);
+        }
+        taskFindData.setTask(task);
         return taskFindData;
     }
 

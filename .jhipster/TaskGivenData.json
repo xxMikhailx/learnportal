@@ -14,6 +14,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "task",
             "otherEntityRelationshipName": "givenData",
+            "relationshipValidateRules": "required",
             "relationshipName": "task",
             "otherEntityField": "title"
         }

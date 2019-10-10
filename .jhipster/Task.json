@@ -46,6 +46,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "category",
             "otherEntityRelationshipName": "tasks",
+            "relationshipValidateRules": "required",
             "relationshipName": "category",
             "otherEntityField": "fullName"
         }

@@ -26,6 +26,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "category",
             "otherEntityRelationshipName": "decks",
+            "relationshipValidateRules": "required",
             "relationshipName": "category",
             "otherEntityField": "fullName"
         }

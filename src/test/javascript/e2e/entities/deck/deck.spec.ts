@@ -3,7 +3,7 @@ import { browser, ExpectedConditions as ec, promise } from 'protractor';
 import { NavBarPage, SignInPage } from '../../page-objects/jhi-page-objects';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { DeckComponentsPage, DeckDeleteDialog, DeckUpdatePage } from './deck.page-object';
+import { DeckComponentsPage, /* DeckDeleteDialog, */ DeckUpdatePage } from './deck.page-object';
 import * as path from 'path';
 
 const expect = chai.expect;
@@ -13,7 +13,7 @@ describe('Deck e2e test', () => {
   let signInPage: SignInPage;
   let deckUpdatePage: DeckUpdatePage;
   let deckComponentsPage: DeckComponentsPage;
-  let deckDeleteDialog: DeckDeleteDialog;
+  /* let deckDeleteDialog: DeckDeleteDialog; */
   const fileNameToUpload = 'logo-jhipster.png';
   const fileToUpload = '../../../../../../src/main/webapp/content/images/' + fileNameToUpload;
   const absolutePath = path.resolve(__dirname, fileToUpload);
@@ -40,35 +40,36 @@ describe('Deck e2e test', () => {
     await deckUpdatePage.cancel();
   });
 
-  it('should create and save Decks', async () => {
-    const nbButtonsBeforeCreate = await deckComponentsPage.countDeleteButtons();
+  /*  it('should create and save Decks', async () => {
+        const nbButtonsBeforeCreate = await deckComponentsPage.countDeleteButtons();
 
-    await deckComponentsPage.clickOnCreateButton();
-    await promise.all([
-      deckUpdatePage.setTitleInput('title'),
-      deckUpdatePage.setDescriptionInput('description'),
-      deckUpdatePage.setDeckInput(absolutePath),
-      deckUpdatePage.categorySelectLastOption()
-    ]);
-    expect(await deckUpdatePage.getTitleInput()).to.eq('title', 'Expected Title value to be equals to title');
-    expect(await deckUpdatePage.getDescriptionInput()).to.eq('description', 'Expected Description value to be equals to description');
-    expect(await deckUpdatePage.getDeckInput()).to.endsWith(fileNameToUpload, 'Expected Deck value to be end with ' + fileNameToUpload);
-    await deckUpdatePage.save();
-    expect(await deckUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
+        await deckComponentsPage.clickOnCreateButton();
+        await promise.all([
+            deckUpdatePage.setTitleInput('title'),
+            deckUpdatePage.setDescriptionInput('description'),
+            deckUpdatePage.setDeckInput(absolutePath),
+            deckUpdatePage.categorySelectLastOption(),
+        ]);
+        expect(await deckUpdatePage.getTitleInput()).to.eq('title', 'Expected Title value to be equals to title');
+        expect(await deckUpdatePage.getDescriptionInput()).to.eq('description', 'Expected Description value to be equals to description');
+        expect(await deckUpdatePage.getDeckInput()).to.endsWith(fileNameToUpload, 'Expected Deck value to be end with ' + fileNameToUpload);
+        await deckUpdatePage.save();
+        expect(await deckUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;
 
-    expect(await deckComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
-  });
+        expect(await deckComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeCreate + 1, 'Expected one more entry in the table');
+    }); */
 
-  it('should delete last Deck', async () => {
-    const nbButtonsBeforeDelete = await deckComponentsPage.countDeleteButtons();
-    await deckComponentsPage.clickOnLastDeleteButton();
+  /*  it('should delete last Deck', async () => {
+        const nbButtonsBeforeDelete = await deckComponentsPage.countDeleteButtons();
+        await deckComponentsPage.clickOnLastDeleteButton();
 
-    deckDeleteDialog = new DeckDeleteDialog();
-    expect(await deckDeleteDialog.getDialogTitle()).to.eq('learnportalApp.deck.delete.question');
-    await deckDeleteDialog.clickOnConfirmButton();
+        deckDeleteDialog = new DeckDeleteDialog();
+        expect(await deckDeleteDialog.getDialogTitle())
+            .to.eq('learnportalApp.deck.delete.question');
+        await deckDeleteDialog.clickOnConfirmButton();
 
-    expect(await deckComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
-  });
+        expect(await deckComponentsPage.countDeleteButtons()).to.eq(nbButtonsBeforeDelete - 1);
+    }); */
 
   after(async () => {
     await navBarPage.autoSignOut();

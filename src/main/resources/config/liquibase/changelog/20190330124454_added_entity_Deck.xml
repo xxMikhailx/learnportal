@@ -29,7 +29,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="category_id" type="bigint">
-                <constraints nullable="true" />
+                <constraints nullable="false" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
@@ -58,6 +58,7 @@
             <column name="description" type="string"/>
             <column name="deck" type="blob"/>
             <column name="deck_content_type" type="string"/>
+            <column name="category_id" type="numeric"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here, do not remove-->
         </loadData>
     </changeSet>

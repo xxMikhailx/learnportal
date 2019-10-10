@@ -25,7 +25,7 @@ export class QuestionAnswerUpdateComponent implements OnInit {
     id: [],
     text: [null, [Validators.required]],
     correct: [null, [Validators.required]],
-    question: []
+    question: [null, Validators.required]
   });
 
   constructor(

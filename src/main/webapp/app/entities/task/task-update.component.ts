@@ -27,7 +27,7 @@ export class TaskUpdateComponent implements OnInit {
     shortDescription: [],
     taskDescription: [null, [Validators.required]],
     solution: [null, [Validators.required]],
-    category: []
+    category: [null, Validators.required]
   });
 
   constructor(
