@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="contact">
+            <h2><span jhiTranslate="learnportalApp.contact.detail.title">Contact</span> {{contact.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="learnportalApp.contact.text">Text</span></dt>
+                <dd>
+                    <span>{{contact.text}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.contact.description">Description</span></dt>
+                <dd>
+                    <span>{{contact.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.contact.contactType">Contact Type</span></dt>
+                <dd>
+                    <span jhiTranslate="{{'learnportalApp.ContactType.' + contact.contactType}}">{{contact.contactType}}</span>
+                </dd>
+                <dt><span jhiTranslate="learnportalApp.contact.mainPage">Main Page</span></dt>
+                <dd>
+                    <div *ngIf="contact.mainPage">
+                        <a [routerLink]="['/main-page', contact.mainPage?.id, 'view']">{{contact.mainPage?.motto}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/contact', contact.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

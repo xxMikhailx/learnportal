@@ -18,6 +18,8 @@
         "quiz": "Quiz",
         "quizQuestion": "Quiz Question",
         "questionAnswer": "Question Answer",
+        "mainPage": "Main Page",
+        "contact": "Contact",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -1,0 +1,60 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-contact-heading" jhiTranslate="learnportalApp.contact.home.createOrEditLabel">Create or edit a Contact</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="learnportalApp.contact.text" for="field_text">Text</label>
+                    <input type="text" class="form-control" name="text" id="field_text"
+                           formControlName="text"/>
+                    <div *ngIf="editForm.get('text').invalid && (editForm.get('text').dirty || editForm.get('text').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('text').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="learnportalApp.contact.description" for="field_description">Description</label>
+                    <input type="text" class="form-control" name="description" id="field_description"
+                           formControlName="description"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="learnportalApp.contact.contactType" for="field_contactType">Contact Type</label>
+                    <select class="form-control" name="contactType" formControlName="contactType" id="field_contactType">
+                        <option value="CONTACT">{{'learnportalApp.ContactType.CONTACT' | translate}}</option>
+                        <option value="LINK">{{'learnportalApp.ContactType.LINK' | translate}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="learnportalApp.contact.mainPage" for="field_mainPage">Main Page</label>
+                    <select class="form-control" id="field_mainPage" name="mainPage" formControlName="mainPage">
+                        <option *ngIf="!editForm.get('mainPage').value" [ngValue]="null" selected></option>
+                        <option [ngValue]="mainPageOption.id === editForm.get('mainPage').value?.id ? editForm.get('mainPage').value : mainPageOption" *ngFor="let mainPageOption of mainpages; trackBy: trackMainPageById">{{mainPageOption.motto}}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('mainPage').invalid && (editForm.get('mainPage').dirty || editForm.get('mainPage').touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('mainPage').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

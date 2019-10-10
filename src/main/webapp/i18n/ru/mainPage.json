@@ -1,0 +1,24 @@
+{
+  "learnportalApp": {
+    "mainPage": {
+      "home": {
+        "title": "Main Pages",
+        "createLabel": "Создать новый Main Page",
+        "createOrEditLabel": "Создать или отредактировать Main Page",
+        "notFound": "No Main Pages found"
+      },
+      "created": "Новый Main Page создан с идентификатором {{ param }}",
+      "updated": "Main Page обновлен с идентификатором {{ param }}",
+      "deleted": "Main Page удален с идентификатором {{ param }}",
+      "delete": {
+        "question": "Вы уверены что хотите удалить Main Page {{ id }}?"
+      },
+      "detail": {
+        "title": "Main Page"
+      },
+      "content": "Content",
+      "motto": "Motto",
+      "contacts": "Contacts"
+    }
+  }
+}

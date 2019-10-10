@@ -43,6 +43,14 @@ import { RouterModule } from '@angular/router';
       {
         path: 'question-answer',
         loadChildren: () => import('./question-answer/question-answer.module').then(m => m.LearnportalQuestionAnswerModule)
+      },
+      {
+        path: 'main-page',
+        loadChildren: () => import('./main-page/main-page.module').then(m => m.LearnportalMainPageModule)
+      },
+      {
+        path: 'contact',
+        loadChildren: () => import('./contact/contact.module').then(m => m.LearnportalContactModule)
       }
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ])
