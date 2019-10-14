@@ -29,7 +29,7 @@ export class DeckService {
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http.get<IDeck[]>(this.resourceUrl, { params: options, observe: 'response' });
+    return this.http.get<IDeck[]>(`${this.resourceUrl}/rsql`, { params: options, observe: 'response' });
   }
 
   delete(id: number): Observable<HttpResponse<any>> {

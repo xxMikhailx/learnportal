@@ -1,0 +1,61 @@
+.edit-icon {
+  color: green;
+  font-size: 16px;
+  opacity: 0.6;
+}
+
+.remove-icon {
+  color: red;
+  font-size: 21px;
+  opacity: 0.6;
+}
+
+.deck-link {
+  background-color: #657A90;
+  opacity: 0.9;
+}
+
+.edit-icon:hover,
+.remove-icon:hover,
+.deck-link:hover,
+.powerpoint-img:hover,
+.download-link:hover {
+  text-decoration: none;
+  opacity: 1;
+}
+
+.text-reduction {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.deck-title-text {
+  color: white;
+}
+
+.deck-category-text {
+  color: #CDCED0;
+}
+
+.card-indent {
+  margin-top: 30px;
+}
+
+.text-indent {
+  margin-top: 12px;
+}
+
+.powerpoint-img {
+  line-height: 1;
+  color: #FF4500;
+  opacity: 0.9;
+}
+
+.download-link {
+  opacity: 0.8;
+}

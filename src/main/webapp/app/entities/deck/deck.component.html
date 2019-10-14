@@ -1,70 +1,74 @@
 <div>
-    <h2 id="page-heading">
-        <span jhiTranslate="learnportalApp.deck.home.title">Decks</span>
-        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-deck" [routerLink]="['/deck/new']">
-            <fa-icon [icon]="'plus'"></fa-icon>
-            <span  jhiTranslate="learnportalApp.deck.home.createLabel">
-            Create a new Deck
-            </span>
-        </button>
+    <h2 id="page-heading" class="title text-center">
+        <span jhiTranslate="learnportalApp.deck.home.title"></span>
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
-    <div class="alert alert-warning" *ngIf="decks?.length === 0">
-        <span jhiTranslate="learnportalApp.deck.home.notFound">No decks found</span>
-    </div>
-    <div class="table-responsive" *ngIf="decks?.length > 0">
-        <table class="table table-striped" aria-describedby="page-heading">
-            <thead>
-            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="title"><span jhiTranslate="learnportalApp.deck.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="description"><span jhiTranslate="learnportalApp.deck.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="deck"><span jhiTranslate="learnportalApp.deck.deck">Deck</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="category.fullName"><span jhiTranslate="learnportalApp.deck.category">Category</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
-            <tr *ngFor="let deck of decks ;trackBy: trackId">
-                <td><a [routerLink]="['/deck', deck.id, 'view' ]">{{deck.id}}</a></td>
-                <td>{{deck.title}}</td>
-                <td>{{deck.description}}</td>
-                <td>
-                    <a *ngIf="deck.deck" (click)="openFile(deck.deckContentType, deck.deck)" jhiTranslate="entity.action.open">open</a>
-                    <span *ngIf="deck.deck">{{deck.deckContentType}}, {{byteSize(deck.deck)}}</span>
-                </td>
-                <td>
-                    <div *ngIf="deck.category">
-                        <a [routerLink]="['/category', deck.category?.id, 'view' ]" >{{deck.category?.fullName}}</a>
+
+    <div class="container">
+        <div class="row">
+            <div class="input-group mb-3 col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12 col-12">
+                <input [(ngModel)]="searchValue" (ngModelChange)="onSearchChange()" class="form-control" placeholder="{{'entity.action.liveSearch' | translate}}" type="text"></div>
+            <div class="input-group mb-3 col">
+                <select [(ngModel)]="categoryId" (ngModelChange)="onSearchChange()" class="full-width custom-select">
+                    <option selected value="" jhiTranslate="learnportalApp.category.choose"></option>
+                    <option *ngFor="let category of categories ;trackBy: trackId" value="{{category.id}}">{{category.shortName}}</option>
+                </select>
+            </div>
+            <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-xs-12 col-12">
+                <button [routerLink]="['/deck/new']" class="btn btn-primary full-width" type="button"><fa-icon [icon]="'plus'"></fa-icon> {{'entity.action.add' | translate}}</button>
+            </div>
+        </div>
+
+        <div class="alert alert-warning card-indent" *ngIf="decks?.length === 0">
+            <span jhiTranslate="learnportalApp.deck.home.notFound"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+                    <div class="card card-indent" *ngFor="let deck of decks ;trackBy: trackId">
+                        <a *ngIf="deck.deck" (click)="openFile(deck.deckContentType, deck.deck)">
+                            <h5 class="card-header deck-link">
+                                <div class="row">
+                                    <div title="{{deck.title}}" class="text-reduction col-6 deck-title-text">{{deck.title}}</div>
+                                    <div title="{{deck.category?.shortName}}" class="text-reduction col-6 text-right deck-category-text">{{deck.category?.shortName}}</div>
+                                </div>
+                            </h5>
+                        </a>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-1 col-lg-1 col-md-2 col-sm-2 col-xs-3 col-3">
+                                    <a *ngIf="deck.deck" (click)="openFile(deck.deckContentType, deck.deck)">
+                                        <fa-icon class="fa-5x powerpoint-img" [icon]="'file-powerpoint'"></fa-icon>
+                                    </a>
+                                </div>
+                                <div class="col-xl-11 col-lg-11 col-md-10 col-sm-10 col-xs-9 col-9">
+                                    <div class="row text-indent">
+                                        <div class="col-12">
+                                            <p title="{{deck.description}}" class="text-reduction card-text">{{deck.description}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-indent row">
+                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 col-12">
+                                            <div class="download-link text-reduction">
+                                                <a *ngIf="deck.deck" (click)="openFile(deck.deckContentType, deck.deck)">
+                                                    <span jhiTranslate="entity.action.download"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="text-right col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12">
+                                            <a class="edit-icon" [routerLink]="['/deck', deck.id, 'edit' ]"><fa-icon class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6" [icon]="'pencil-alt'"></fa-icon></a>
+                                            <a class="remove-icon" [routerLink]="['/deck', { outlets: { popup: deck.id + '/delete'} }]"><fa-icon class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6" [icon]="'times'"></fa-icon></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </td>
-                <td class="text-right">
-                    <div class="btn-group">
-                        <button type="submit"
-                                [routerLink]="['/deck', deck.id, 'view' ]"
-                                class="btn btn-info btn-sm">
-                            <fa-icon [icon]="'eye'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/deck', deck.id, 'edit']"
-                                class="btn btn-primary btn-sm">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
-                        </button>
-                        <button type="submit"
-                                [routerLink]="['/deck', { outlets: { popup: deck.id + '/delete'} }]"
-                                replaceUrl="true"
-                                queryParamsHandling="merge"
-                                class="btn btn-danger btn-sm">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
-                        </button>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
