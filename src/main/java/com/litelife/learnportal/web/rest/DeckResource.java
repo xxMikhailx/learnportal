@@ -7,6 +7,9 @@ import com.litelife.learnportal.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import io.github.perplexhub.rsql.RSQLSupport;
+
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -97,6 +100,26 @@ public class DeckResource {
     public ResponseEntity<List<Deck>> getAllDecks(Pageable pageable) {
         log.debug("REST request to get a page of Decks");
         Page<Deck> page = deckRepository.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * {@code GET  /decks/rsql} : get all the decks with RSQL.
+     *
+     * @param pageable the pagination information.
+     * @param search   the search criteria.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of decks in body.
+     */
+    @GetMapping("/decks/rsql")
+    public ResponseEntity<List<Deck>> getAllDecks(Pageable pageable, String search) {
+        log.debug("REST request to get a page of Decks with RSQL");
+        Page<Deck> page = null;
+        if (StringUtils.isBlank(search)) {
+            page = deckRepository.findAll(pageable);
+        } else {
+            page = deckRepository.findAll(RSQLSupport.toSpecification(search), pageable);
+        }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
