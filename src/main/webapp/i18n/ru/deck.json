@@ -3,23 +3,23 @@
     "deck": {
       "home": {
         "title": "Презентации",
-        "createLabel": "Создать новый Deck",
-        "createOrEditLabel": "Создать или отредактировать Deck",
-        "notFound": "No Decks found"
+        "createLabel": "Создать новую презентацию",
+        "createOrEditLabel": "Создать или отредактировать презентацию",
+        "notFound": "Презентаций не найдено"
       },
-      "created": "Новый Deck создан с идентификатором {{ param }}",
-      "updated": "Deck обновлен с идентификатором {{ param }}",
-      "deleted": "Deck удален с идентификатором {{ param }}",
+      "created": "Новая презентация создана с идентификатором {{ param }}",
+      "updated": "Презентация обновлена с идентификатором {{ param }}",
+      "deleted": "Презентация удалена с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Deck {{ id }}?"
+        "question": "Вы уверены что хотите удалить презентацию '{{ title }}'?"
       },
       "detail": {
-        "title": "Deck"
+        "title": "Презентация"
       },
-      "title": "Title",
-      "description": "Description",
-      "deck": "Deck",
-      "category": "Category"
+      "title": "Заголовок",
+      "description": "Описание",
+      "deck": "Презентация",
+      "category": "Категория"
     }
   }
 }
