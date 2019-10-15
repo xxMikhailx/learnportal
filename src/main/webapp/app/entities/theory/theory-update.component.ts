@@ -23,11 +23,50 @@ export class TheoryUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    title: [null, [Validators.required]],
-    description: [],
+    title: [null, [Validators.required, Validators.maxLength(255)]],
+    description: [null, [Validators.required, Validators.maxLength(255)]],
     content: [null, [Validators.required]],
     category: [null, Validators.required]
   });
+
+  public tools: object = {
+    items: [
+      'Bold',
+      'Italic',
+      'Underline',
+      'StrikeThrough',
+      '|',
+      'FontName',
+      'FontSize',
+      'FontColor',
+      'BackgroundColor',
+      '|',
+      'LowerCase',
+      'UpperCase',
+      '|',
+      'Undo',
+      'Redo',
+      '|',
+      'Formats',
+      'Alignments',
+      '|',
+      'OrderedList',
+      'UnorderedList',
+      '|',
+      'Indent',
+      'Outdent',
+      '|',
+      'CreateLink',
+      'CreateTable',
+      'Image',
+      '|',
+      'ClearFormat',
+      'Print',
+      'SourceCode',
+      '|',
+      'FullScreen'
+    ]
+  };
 
   constructor(
     protected dataUtils: JhiDataUtils,
