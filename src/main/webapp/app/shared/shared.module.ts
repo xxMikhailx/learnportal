@@ -13,9 +13,10 @@ import { FormulaComponent } from 'app/entities/formula/formula.component';
 import { QuizComponent } from 'app/entities/quiz/quiz.component';
 import { TaskComponent } from 'app/entities/task/task.component';
 import { DeckComponent } from 'app/entities/deck/deck.component';
+import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 @NgModule({
-  imports: [RouterModule, LearnportalSharedLibsModule],
+  imports: [RouterModule, LearnportalSharedLibsModule, RichTextEditorAllModule],
   declarations: [
     FindLanguageFromKeyPipe,
     JhiAlertComponent,
@@ -33,6 +34,7 @@ import { DeckComponent } from 'app/entities/deck/deck.component';
   entryComponents: [JhiLoginModalComponent],
   exports: [
     LearnportalSharedLibsModule,
+    RichTextEditorAllModule,
     FindLanguageFromKeyPipe,
     JhiAlertComponent,
     JhiAlertErrorComponent,
