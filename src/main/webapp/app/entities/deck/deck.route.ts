@@ -33,10 +33,9 @@ export const deckRoute: Routes = [
     path: '',
     component: DeckComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.deck.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: ':id/view',
@@ -45,10 +44,9 @@ export const deckRoute: Routes = [
       deck: DeckResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.deck.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: 'new',
@@ -57,7 +55,7 @@ export const deckRoute: Routes = [
       deck: DeckResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'learnportalApp.deck.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -69,7 +67,7 @@ export const deckRoute: Routes = [
       deck: DeckResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'learnportalApp.deck.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -84,7 +82,7 @@ export const deckPopupRoute: Routes = [
       deck: DeckResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'learnportalApp.deck.home.title'
     },
     canActivate: [UserRouteAccessService],
