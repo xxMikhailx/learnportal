@@ -38,10 +38,9 @@ export const categoryRoute: Routes = [
     path: '',
     component: CategoryComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.category.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: ':id/view',
@@ -50,10 +49,9 @@ export const categoryRoute: Routes = [
       category: CategoryResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.category.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: 'new',
@@ -62,7 +60,7 @@ export const categoryRoute: Routes = [
       category: CategoryResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'learnportalApp.category.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -74,7 +72,7 @@ export const categoryRoute: Routes = [
       category: CategoryResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'learnportalApp.category.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -83,46 +81,41 @@ export const categoryRoute: Routes = [
     path: ':id/theory',
     component: TheoryComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.theory.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: ':id/formula',
     component: FormulaComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.formula.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: ':id/quiz',
     component: QuizComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.quiz.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: ':id/task',
     component: TaskComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.task.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: ':id/deck',
     component: DeckComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.deck.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   }
 ];
 
@@ -134,7 +127,7 @@ export const categoryPopupRoute: Routes = [
       category: CategoryResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'learnportalApp.category.home.title'
     },
     canActivate: [UserRouteAccessService],
