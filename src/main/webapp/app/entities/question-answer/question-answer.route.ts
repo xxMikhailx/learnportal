@@ -33,10 +33,9 @@ export const questionAnswerRoute: Routes = [
     path: '',
     component: QuestionAnswerComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.questionAnswer.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: ':id/view',
@@ -45,10 +44,9 @@ export const questionAnswerRoute: Routes = [
       questionAnswer: QuestionAnswerResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.questionAnswer.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: 'new',
@@ -57,10 +55,9 @@ export const questionAnswerRoute: Routes = [
       questionAnswer: QuestionAnswerResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'learnportalApp.questionAnswer.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: ':id/edit',
@@ -69,7 +66,7 @@ export const questionAnswerRoute: Routes = [
       questionAnswer: QuestionAnswerResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'learnportalApp.questionAnswer.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -84,7 +81,7 @@ export const questionAnswerPopupRoute: Routes = [
       questionAnswer: QuestionAnswerResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'learnportalApp.questionAnswer.home.title'
     },
     canActivate: [UserRouteAccessService],
