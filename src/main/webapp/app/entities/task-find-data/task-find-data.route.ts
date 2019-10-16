@@ -33,10 +33,9 @@ export const taskFindDataRoute: Routes = [
     path: '',
     component: TaskFindDataComponent,
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.taskFindData.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: ':id/view',
@@ -45,10 +44,9 @@ export const taskFindDataRoute: Routes = [
       taskFindData: TaskFindDataResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: [],
       pageTitle: 'learnportalApp.taskFindData.home.title'
-    },
-    canActivate: [UserRouteAccessService]
+    }
   },
   {
     path: 'new',
@@ -57,7 +55,7 @@ export const taskFindDataRoute: Routes = [
       taskFindData: TaskFindDataResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'learnportalApp.taskFindData.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -69,7 +67,7 @@ export const taskFindDataRoute: Routes = [
       taskFindData: TaskFindDataResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'learnportalApp.taskFindData.home.title'
     },
     canActivate: [UserRouteAccessService]
@@ -84,7 +82,7 @@ export const taskFindDataPopupRoute: Routes = [
       taskFindData: TaskFindDataResolve
     },
     data: {
-      authorities: ['ROLE_USER'],
+      authorities: ['ROLE_ADMIN'],
       pageTitle: 'learnportalApp.taskFindData.home.title'
     },
     canActivate: [UserRouteAccessService],
