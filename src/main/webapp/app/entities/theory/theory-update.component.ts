@@ -47,7 +47,6 @@ export class TheoryUpdateComponent implements OnInit {
       'Undo',
       'Redo',
       '|',
-      'Formats',
       'Alignments',
       '|',
       'OrderedList',
