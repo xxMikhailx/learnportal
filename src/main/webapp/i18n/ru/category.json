@@ -2,27 +2,27 @@
   "learnportalApp": {
     "category": {
       "home": {
-        "title": "Categories",
-        "createLabel": "Создать новый Category",
-        "createOrEditLabel": "Создать или отредактировать Category",
-        "notFound": "No Categories found"
+        "title": "Категории",
+        "createLabel": "Создать новую категорию",
+        "createOrEditLabel": "Создать или отредактировать категорию",
+        "notFound": "Категорий не найдено"
       },
-      "created": "Новый Category создан с идентификатором {{ param }}",
-      "updated": "Category обновлен с идентификатором {{ param }}",
-      "deleted": "Category удален с идентификатором {{ param }}",
+      "created": "Новая категория с идентификатором {{ param }} создана",
+      "updated": "Категория с идентификатором {{ param }} обновлена",
+      "deleted": "Категория с идентификатором {{ param }} удалена",
       "delete": {
-        "question": "Вы уверены что хотите удалить Category {{ id }}?"
+        "question": "Вы уверены что хотите удалить категорию '{{ shortName }}'?"
       },
       "detail": {
-        "title": "Category"
+        "title": "Категория"
       },
-      "shortName": "Short Name",
-      "fullName": "Full Name",
+      "shortName": "Сокращенное название",
+      "fullName": "Полное название",
       "theories": "Теория",
-      "formulas": "Formulas",
+      "formulas": "Формулы",
       "decks": "Презентации",
-      "tasks": "Tasks",
-      "quizzes": "Quizzes",
+      "tasks": "Задачи",
+      "quizzes": "Тесты",
       "choose": "Категория ..."
     }
   }
