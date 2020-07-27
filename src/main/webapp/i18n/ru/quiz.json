@@ -11,7 +11,7 @@
       "updated": "Quiz обновлен с идентификатором {{ param }}",
       "deleted": "Quiz удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Quiz {{ id }}?"
+        "question": "Вы уверены, что хотите удалить тест '{{ id }}'?"
       },
       "detail": {
         "title": "Quiz"

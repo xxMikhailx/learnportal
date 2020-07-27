@@ -11,7 +11,7 @@
       "updated": "Task Given Data обновлен с идентификатором {{ param }}",
       "deleted": "Task Given Data удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Task Given Data {{ id }}?"
+        "question": "Вы уверены, что хотите удалить известные данные '{{ id }}'?"
       },
       "detail": {
         "title": "Task Given Data"

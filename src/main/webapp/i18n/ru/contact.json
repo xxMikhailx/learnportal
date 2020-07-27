@@ -11,7 +11,7 @@
       "updated": "Contact обновлен с идентификатором {{ param }}",
       "deleted": "Contact удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Contact {{ id }}?"
+        "question": "Вы уверены, что хотите удалить контакт '{{ id }}'?"
       },
       "detail": {
         "title": "Contact"

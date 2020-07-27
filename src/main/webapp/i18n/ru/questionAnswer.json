@@ -11,7 +11,7 @@
       "updated": "Question Answer обновлен с идентификатором {{ param }}",
       "deleted": "Question Answer удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Question Answer {{ id }}?"
+        "question": "Вы уверены, что хотите удалить ответ '{{ id }}'?"
       },
       "detail": {
         "title": "Question Answer"
