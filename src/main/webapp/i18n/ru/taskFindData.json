@@ -11,7 +11,7 @@
       "updated": "Task Find Data обновлен с идентификатором {{ param }}",
       "deleted": "Task Find Data удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Task Find Data {{ id }}?"
+        "question": "Вы уверены, что хотите удалить искомые данные '{{ id }}'?"
       },
       "detail": {
         "title": "Task Find Data"

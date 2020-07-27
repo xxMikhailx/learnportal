@@ -11,7 +11,7 @@
       "updated": "Main Page обновлен с идентификатором {{ param }}",
       "deleted": "Main Page удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Main Page {{ id }}?"
+        "question": "Вы уверены, что хотите удалить главную страницу '{{ id }}'?"
       },
       "detail": {
         "title": "Main Page"

@@ -11,7 +11,7 @@
       "updated": "Task обновлен с идентификатором {{ param }}",
       "deleted": "Task удален с идентификатором {{ param }}",
       "delete": {
-        "question": "Вы уверены что хотите удалить Task {{ id }}?"
+        "question": "Вы уверены, что хотите удалить задачу '{{ id }}'?"
       },
       "detail": {
         "title": "Task"
