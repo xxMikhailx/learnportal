@@ -6,7 +6,7 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-        <p id="jhi-delete-formula-heading" jhiTranslate="learnportalApp.formula.delete.question" [translateValues]="{id: formula.id}">Are you sure you want to delete this Formula?</p>
+        <p id="jhi-delete-formula-heading" jhiTranslate="learnportalApp.formula.delete.question" [translateValues]="{title: formula.title}">Are you sure you want to delete this Formula?</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
