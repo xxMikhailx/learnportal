@@ -1,0 +1,49 @@
+<hr *ngIf="categoryId"/>
+
+<div class="row recommended-links">
+    <div class="col-12">
+        <h1 class="title" jhiTranslate="global.categoryRelated"></h1>
+    </div>
+
+    <div *ngIf="currentEntity.toLowerCase() != 'theory'" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+        <a class="text-body" [routerLink]="['/theory']" [queryParams]="{'categoryId' : categoryId}"
+           routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+            <span jhiTranslate="learnportalApp.theory.home.title"></span>
+        </a>
+    </div>
+
+    <div *ngIf="currentEntity.toLowerCase() != 'formula'" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+        <a class="text-body" [routerLink]="['/formula']" [queryParams]="{'categoryId' : categoryId}"
+           routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+            <span jhiTranslate="learnportalApp.formula.home.title"></span>
+        </a>
+    </div>
+
+    <div *ngIf="currentEntity.toLowerCase() != 'deck'" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+        <a class="text-body" [routerLink]="['/deck']" [queryParams]="{'categoryId' : categoryId}"
+           routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+            <span jhiTranslate="learnportalApp.deck.home.title"></span>
+        </a>
+    </div>
+
+    <div *ngIf="currentEntity.toLowerCase() != 'task'" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+        <a class="text-body" [routerLink]="['/task']" [queryParams]="{'categoryId' : categoryId}"
+           routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+            <span jhiTranslate="learnportalApp.task.home.title"></span>
+        </a>
+    </div>
+
+    <div *ngIf="currentEntity.toLowerCase() != 'quiz'" class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+        <a class="text-body pb-3" [routerLink]="['/quiz']" [queryParams]="{'categoryId' : categoryId}"
+           routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
+            <span jhiTranslate="learnportalApp.quiz.home.title"></span>
+        </a>
+    </div>
+</div>
+
+<hr *ngIf="categoryId"/>
