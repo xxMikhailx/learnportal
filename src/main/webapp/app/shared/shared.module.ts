@@ -14,6 +14,7 @@ import { QuizComponent } from 'app/entities/quiz/quiz.component';
 import { TaskComponent } from 'app/entities/task/task.component';
 import { DeckComponent } from 'app/entities/deck/deck.component';
 import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
+import { RecommendedLinksComponent } from './common/recommended-links/recommended-links.component';
 
 @NgModule({
   imports: [RouterModule, LearnportalSharedLibsModule, RichTextEditorAllModule],
@@ -29,7 +30,8 @@ import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor'
     FormulaComponent,
     QuizComponent,
     TaskComponent,
-    DeckComponent
+    DeckComponent,
+    RecommendedLinksComponent
   ],
   entryComponents: [JhiLoginModalComponent],
   exports: [
@@ -47,7 +49,8 @@ import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor'
     FormulaComponent,
     QuizComponent,
     TaskComponent,
-    DeckComponent
+    DeckComponent,
+    RecommendedLinksComponent
   ]
 })
 export class LearnportalSharedModule {}

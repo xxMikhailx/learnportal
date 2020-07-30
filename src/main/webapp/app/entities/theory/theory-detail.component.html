@@ -43,43 +43,8 @@
                     </div>
                 </div>
 
-                <hr *ngIf="theory.category"/>
-
-                <div class="row recommended-links" *ngIf="theory.category">
-                    <div class="col-12">
-                        <h1 class="title" jhiTranslate="global.categoryRelated"></h1>
-                    </div>
-
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 d-none">
-                        <a class="text-body" [routerLink]="['/category', theory.category?.id, 'formula' ]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="learnportalApp.formula.home.title"></span>
-                        </a>
-                    </div>
-
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                        <a class="text-body" [routerLink]="['/category', theory.category?.id, 'deck' ]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="learnportalApp.deck.home.title"></span>
-                        </a>
-                    </div>
-
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 d-none">
-                        <a class="text-body" [routerLink]="['/category', theory.category?.id, 'task' ]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="learnportalApp.task.home.title"></span>
-                        </a>
-                    </div>
-
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 d-none">
-                        <a class="text-body pb-3" [routerLink]="['/category', theory.category?.id, 'quiz' ]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                            <fa-icon icon="asterisk" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="learnportalApp.quiz.home.title"></span>
-                        </a>
-                    </div>
-                </div>
-
-                <hr *ngIf="theory.category"/>
+                <jhi-recommended-links *ngIf="theory.category" categoryId="{{theory.category?.id}}"
+                        currentEntity="theory"></jhi-recommended-links>
 
                 <button type="submit"
                         (click)="previousState()"
