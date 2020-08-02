@@ -51,17 +51,14 @@
                                     </div>
 
                                     <div class="text-indent row">
-                                        <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 col-12">
+                                        <div class="col-8">
                                             <div class="download-link text-reduction">
                                                 <a *ngIf="deck.deck" (click)="openFile(deck.deckContentType, deck.deck)">
                                                     <span jhiTranslate="entity.action.download"></span>
                                                 </a>
                                             </div>
                                         </div>
-                                        <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="text-right col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12">
-                                            <a class="edit-icon" [routerLink]="['/deck', deck.id, 'edit' ]"><fa-icon class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6" [icon]="'pencil-alt'"></fa-icon></a>
-                                            <a class="remove-icon" [routerLink]="['/deck', { outlets: { popup: deck.id + '/delete'} }]"><fa-icon class="col-xl-2 col-lg-2 col-md-4 col-sm-6 col-xs-6 col-6" [icon]="'times'"></fa-icon></a>
-                                        </div>
+                                        <jhi-edit-remove-icons class="col-4" *jhiHasAnyAuthority="'ROLE_ADMIN'" entityId="{{deck.id}}" entityName="deck"></jhi-edit-remove-icons>
                                     </div>
                                 </div>
                             </div>

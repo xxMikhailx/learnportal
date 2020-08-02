@@ -9,16 +9,7 @@
                             {{theory.title}}
                         </h1>
                     </div>
-
-                    <div class="col-4 d-flex flex-row-reverse align-items-center" *jhiHasAnyAuthority="'ROLE_ADMIN'">
-                        <a class="remove-icon pl-2 text-danger" [routerLink]="['/theory', { outlets: { popup: theory.id + '/delete'} }]">
-                            <fa-icon [icon]="'times'"></fa-icon>
-                        </a>
-
-                        <a class="edit-icon text-success" [routerLink]="['/theory', theory.id, 'edit']">
-                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
-                        </a>
-                    </div>
+                    <jhi-edit-remove-icons *jhiHasAnyAuthority="'ROLE_ADMIN'" class="col-4" entityId="{{theory.id}}" entityName="theory"></jhi-edit-remove-icons>
                 </div>
 
                 <div class="row">

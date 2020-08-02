@@ -38,10 +38,7 @@
                         </a>
                         <div class="card-body">
                             <p title="{{theory.description}}" class="text-reduction card-text">{{theory.description}}</p>
-                            <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="text-right">
-                                <a class="edit-icon" [routerLink]="['/theory', theory.id, 'edit' ]"><fa-icon class="col-1" [icon]="'pencil-alt'"></fa-icon></a>
-                                <a class="remove-icon" [routerLink]="['/theory', { outlets: { popup: theory.id + '/delete'} }]"><fa-icon class="col-1" [icon]="'times'"></fa-icon></a>
-                            </div>
+                            <jhi-edit-remove-icons *jhiHasAnyAuthority="'ROLE_ADMIN'" entityId="{{theory.id}}" entityName="theory"></jhi-edit-remove-icons>
                         </div>
                     </div>
                 </div>
