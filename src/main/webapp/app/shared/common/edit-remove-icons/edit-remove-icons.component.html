@@ -1,0 +1,9 @@
+<div class="d-flex flex-row-reverse align-items-center">
+    <a class="remove-icon pl-2 text-danger" [routerLink]="['/' + entityName, { outlets: { popup: entityId + '/delete'} }]">
+        <fa-icon [icon]="'times'"></fa-icon>
+    </a>
+
+    <a class="edit-icon text-success" [routerLink]="['/' + entityName, entityId, 'edit']">
+        <fa-icon [icon]="'pencil-alt'"></fa-icon>
+    </a>
+</div>
